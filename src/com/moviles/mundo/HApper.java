@@ -22,4 +22,5 @@ public class HApper
 			instancia = new HApper();
 		return instancia;
 	}
+	//agrega metodos
 }
