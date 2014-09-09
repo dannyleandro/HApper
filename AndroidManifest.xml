@@ -38,7 +38,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.AlarmasActivity" />
         </activity>
-        
+
         <!-- Actividad asociada a la pantalla principal del juego mental -->
         <activity
             android:name=".JuegoActivity"
@@ -48,8 +48,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.MainActivity" />
         </activity>
-        
-        <!-- Actividad asociada a la pantalla principal de los ajustes-->
+
+        <!-- Actividad asociada a la pantalla principal de los ajustes -->
         <activity
             android:name=".AjustesActivity"
             android:label="@string/title_activity_ajustes"
@@ -57,7 +57,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.MainActivity" />
-        </activity> 
+        </activity>
+        <activity
+            android:name=".DetalleAlarmaActivity"
+            android:label="@string/title_activity_detalle_alarma"
+            android:parentActivityName=".AlarmasActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.AlarmasActivity" />
+        </activity>
     </application>
 
 </manifest>

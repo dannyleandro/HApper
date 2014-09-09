@@ -47,6 +47,25 @@ public class HApper
 	}
 	
 	/**
+	 * Devuelve una alarma dado su nombre
+	 * @param nomb String con el nombre de la alarma a buscar
+	 * @return Alarma que corresponde con el nombre pasado en el parametro
+	 */
+	public Alarma darAlarma(String nomb)
+	{
+		Alarma a = null;
+		for (Alarma al : alarmas) 
+		{
+			if(al.getNombre().equals(nomb))
+			{
+				a = al;
+				break;
+			}
+		}
+		return a;
+	}
+	
+	/**
 	 * Metodo encargado de agregar la nueva alarma
 	 * @param nomb Nombre de la alarma
 	 * @param desc Descripcion de la alarma

@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,12 +42,23 @@ public class AlarmasActivity extends ActionBarActivity
 			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
 			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
 		}
+		listaAlarmas.setOnItemClickListener(new OnItemClickListener() 
+		{
+			@SuppressWarnings("rawtypes")
+			public void onItemClick(AdapterView parent, View view,	int position, long id) 
+			{
+				String nombreAlarma = ((TextView) view).getText().toString();
+				Intent intent = new Intent(getApplicationContext(), DetalleAlarmaActivity.class);
+				intent.putExtra("nombreAlarma", nombreAlarma);
+				startActivity(intent);
+			}
+
+		});
 	}
 	
 	@Override
 	protected void onResume() 
 	{
-		System.out.println("Si llega a resume");
 		super.onResume();
 		String[] alarmas = instancia.darAlarmas();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);

@@ -3,18 +3,16 @@
 
     <string name="app_name">HApper</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Informacion relativa a los ajustes -->
     <string name="btn_ajustes">Ajustes</string>
     <string name="title_activity_ajustes">Ajustes</string>
-    
     <string name="btn_ayuda">Ayuda</string>
-    
-    
+
     <!-- Informacion relativa a el juego -->
     <string name="btn_juego">Juego Mental</string>
     <string name="title_activity_juego">Juego Mental</string>
-    
+
     <!-- Informacion relativa a la alarma -->
     <string name="btn_alarmas">Alarmas</string>
     <string name="title_activity_alarmas">Alarmas</string>
@@ -29,5 +27,9 @@
     <string name="lbl_Hora">Hora:</string>
     <string name="btn_Aceptar">Aceptar</string>
     <string name="btn_Cancelar">Cancelar</string>
+    <string name="title_activity_detalle_alarma">Detalle Alarma</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lbl_Fecha_Creacion">Fecha de creación:</string>
+    <string name="btn_Modificar">Modificar</string>
 
 </resources>

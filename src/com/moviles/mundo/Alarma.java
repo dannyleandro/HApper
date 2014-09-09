@@ -34,7 +34,7 @@ public class Alarma
 	{
 		nombre = nom;
 		descripcion = desc;
-		fechaLan = fechaLanzamiento;
+		fechaLanzamiento = fechaLan;
 		fechaCreacion = new Date();
 	}
 	
