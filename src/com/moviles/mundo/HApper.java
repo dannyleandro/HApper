@@ -2,7 +2,6 @@ package com.moviles.mundo;
 
 public class HApper 
 {
-	//esrfafsvasfv con cambios
 	/**
 	 * Instancia del mundo
 	 */
@@ -22,5 +21,4 @@ public class HApper
 			instancia = new HApper();
 		return instancia;
 	}
-	//agrega metodos
 }
