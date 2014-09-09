@@ -8,5 +8,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="btn_agregar_alarmas">Agregar Alarma</string>
     <string name="lbl_Alarmas">Alarmas Agregadas</string>
+    <string name="title_activity_agregar_alarma">Nueva alarma</string>
 
 </resources>

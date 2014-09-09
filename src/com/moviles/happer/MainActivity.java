@@ -35,6 +35,11 @@ public class MainActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    /**
+     * Muestra la actividad de alarmas 
+     * @param v View
+     */
     public void verAlarmas(View v) 
     {
     	Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);

@@ -1,5 +1,6 @@
 package com.moviles.happer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -48,6 +49,7 @@ public class AlarmasActivity extends ActionBarActivity
 	
 	public void agregarAlarmas(View v) 
 	{
-		System.out.println("Super!!!!");
+		Intent intent = new Intent(getApplicationContext(), AgregarAlarmaActivity.class);
+		startActivity(intent);
 	}
 }
