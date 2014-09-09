@@ -47,6 +47,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.MainActivity" />
+        </activity>
+        
+        <!-- Actividad asociada a la pantalla principal de los ajustes-->
+        <activity
+            android:name=".AjustesActivity"
+            android:label="@string/title_activity_ajustes"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.MainActivity" />
         </activity> 
     </application>
 

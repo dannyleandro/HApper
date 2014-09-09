@@ -1,29 +1,29 @@
 package com.moviles.happer;
 
+import com.moviles.mundo.HApper;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.moviles.mundo.HApper;
 
-// TODO SE ENCUENTRA VACIO, SE DEJAN LOS METODOS VACIOS PARA UN FUTURO
-public class JuegoActivity extends ActionBarActivity 
+
+public class AjustesActivity extends ActionBarActivity
 {
 	private HApper instancia;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
-
+		
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
-
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -35,6 +35,4 @@ public class JuegoActivity extends ActionBarActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	
 }

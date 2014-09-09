@@ -8,6 +8,5 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
-    tools:context="com.moviles.happer.JuegoActivity" >
-   
- </LinearLayout>
+    tools:context="com.moviles.happer.AjustesActivity" >
+</LinearLayout>

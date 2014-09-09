@@ -55,4 +55,14 @@ public class MainActivity extends ActionBarActivity {
     	Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
 		startActivity(intent);
 	}
+    
+    /**
+     * Muestra la actividad de los Ajustes
+     * @param v View vista genérica de carga de la actividad
+     */
+    public void verAjustes(View v) 
+    {
+    	Intent intent = new Intent(getApplicationContext(), AjustesActivity.class);
+		startActivity(intent);
+	}
 }
