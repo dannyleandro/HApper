@@ -53,7 +53,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <DatePicker
-            android:id="@+id/datePicker1"
+            android:id="@+id/dpAlarma"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
@@ -67,11 +67,37 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TimePicker
-            android:id="@+id/timePicker1"
+            android:id="@+id/tpAlarma"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnAceptarAgregarAlarma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|left"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/btn_Aceptar"
+                android:width="150dp" 
+                android:onClick="agregarAlarma"/>
+
+            <Button
+                android:id="@+id/btnCancelarAgregarAlarma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/btn_Cancelar"
+                android:width="150dp" 
+                android:onClick="cancelarAgregarAlarma"/>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

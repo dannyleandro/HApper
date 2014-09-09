@@ -1,7 +1,5 @@
 package com.moviles.happer;
 
-import com.moviles.mundo.HApper;
-
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -10,7 +8,7 @@ import android.view.MenuItem;
 
 public class AjustesActivity extends ActionBarActivity
 {
-	private HApper instancia;
+	//private HApper instancia;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 

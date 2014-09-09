@@ -1,6 +1,7 @@
 package com.moviles.mundo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class HApper 
 {
@@ -43,5 +44,16 @@ public class HApper
 			listaAlarmas[i] = alarmas.get(i).getNombre();
 		}
 		return listaAlarmas;
+	}
+	
+	/**
+	 * Metodo encargado de agregar la nueva alarma
+	 * @param nomb Nombre de la alarma
+	 * @param desc Descripcion de la alarma
+	 * @param fecha Fecha de lanzamiento de la alarma incluyendo su hora
+	 */
+	public void agregarAlarma(String nomb, String desc, Date fecha)
+	{
+		alarmas.add(new Alarma(nomb, desc, fecha));
 	}
 }

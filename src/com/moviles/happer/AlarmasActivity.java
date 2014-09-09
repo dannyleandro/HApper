@@ -14,8 +14,16 @@ import com.moviles.mundo.HApper;
 
 public class AlarmasActivity extends ActionBarActivity 
 {
+	/**
+	 * Atributo que modela la instancia del mundo
+	 */
 	private HApper instancia;
 
+	/**
+	 * Lista que despliega las alarmas
+	 */
+	private ListView listaAlarmas;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -23,14 +31,29 @@ public class AlarmasActivity extends ActionBarActivity
 		setContentView(R.layout.activity_alarmas);
 		instancia = HApper.darInstancia(); 
 		
-		ListView listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
-		String [] alarmas = instancia.darAlarmas();
+		listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
+		String[] alarmas = instancia.darAlarmas();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
 		listaAlarmas.setAdapter(adapter);
 		if(alarmas.length == 0)
 		{
 			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
 			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
+		}
+	}
+	
+	@Override
+	protected void onResume() 
+	{
+		System.out.println("Si llega a resume");
+		super.onResume();
+		String[] alarmas = instancia.darAlarmas();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
+		listaAlarmas.setAdapter(adapter);
+		if(alarmas.length > 0)
+		{
+			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
+			tituloLista.setText("Alarmas Agregadas");
 		}
 	}
 
@@ -53,6 +76,10 @@ public class AlarmasActivity extends ActionBarActivity
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * Metodo encargado de desplegar la vista para agregar una nueva alarma 
+	 * @param v View
+	 */
 	public void agregarAlarmas(View v) 
 	{
 		Intent intent = new Intent(getApplicationContext(), AgregarAlarmaActivity.class);

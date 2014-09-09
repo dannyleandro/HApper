@@ -9,7 +9,6 @@
     <string name="title_activity_ajustes">Ajustes</string>
     
     <string name="btn_ayuda">Ayuda</string>
-    <string name="title_activity_ayuda">Ayuda</string>
     
     
     <!-- Informacion relativa a el juego -->
@@ -28,5 +27,7 @@
     <string name="lbl_Descripcion_Alarma">Descripción de la Alarma</string>
     <string name="lbl_Fecha_Lanzamiento">Fecha de Ejecución:</string>
     <string name="lbl_Hora">Hora:</string>
+    <string name="btn_Aceptar">Aceptar</string>
+    <string name="btn_Cancelar">Cancelar</string>
 
 </resources>

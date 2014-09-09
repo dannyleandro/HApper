@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.moviles.happer.MainActivity" >
 
     <Button
@@ -29,7 +30,7 @@
 
         <Button
             android:id="@+id/btnAjustes"
-            android:layout_width="144dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.82"
             android:text="@string/btn_ajustes" />
