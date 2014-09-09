@@ -5,13 +5,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class AlarmasActivity extends ActionBarActivity {
+import com.moviles.mundo.HApper;
+
+public class AlarmasActivity extends ActionBarActivity 
+{
+	private HApper instancia;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarmas);
+		instancia = HApper.darInstancia();
+		
+		ListView listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
+		String [] alarmas = instancia.darAlarmas();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
+		listaAlarmas.setAdapter(adapter);
 	}
 
 	@Override
