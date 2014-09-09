@@ -9,5 +9,11 @@
     <string name="btn_agregar_alarmas">Agregar Alarma</string>
     <string name="lbl_Alarmas">Alarmas Agregadas</string>
     <string name="title_activity_agregar_alarma">Nueva alarma</string>
+    <string name="lbl_Nombre">Nombre:</string>
+    <string name="lbl_Nombre_Alarma">Nombre de la alarma</string>
+    <string name="lbl_Descripcion">Descripción:</string>
+    <string name="lbl_Descripcion_Alarma">Descripción de la Alarma</string>
+    <string name="lbl_Fecha_Lanzamiento">Fecha de Ejecución:</string>
+    <string name="lbl_Hora">Hora:</string>
 
 </resources>

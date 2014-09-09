@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.moviles.mundo.HApper;
 
@@ -20,12 +21,17 @@ public class AlarmasActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarmas);
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(); 
 		
 		ListView listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
 		String [] alarmas = instancia.darAlarmas();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
 		listaAlarmas.setAdapter(adapter);
+		if(alarmas.length == 0)
+		{
+			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
+			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
+		}
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public class Alarma
 	 */
 	private String nombre;
 	 
-	/**
+	/** 
 	 * fecha de en la que la alarma será anunciada
 	 */
 	private Date fechaLanzamiento;

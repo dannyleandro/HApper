@@ -2,30 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:dividerPadding="10dp"
+    android:gravity="center|top"
+    android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:orientation="vertical"
+    android:paddingTop="10dp"
     tools:context="com.moviles.happer.AlarmasActivity" >
 
     <Button
         android:id="@+id/btnAgregarAlarmas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_agregar_alarmas"
-        android:onClick="agregarAlarmas" />
+        android:onClick="agregarAlarmas"
+        android:text="@string/btn_agregar_alarmas" />
 
     <TextView
         android:id="@+id/txtTituloListaAlarmas"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="@string/lbl_Alarmas"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+    
     <ListView
         android:id="@+id/listaAlarmas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
-    
+
 </LinearLayout>
