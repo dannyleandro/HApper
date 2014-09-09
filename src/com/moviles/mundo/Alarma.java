@@ -22,7 +22,7 @@ public class Alarma
 	/**
 	 * descripción de la alarma
 	 */
-	private String descripción;
+	private String descripcion;
 	
 	/**
 	 * Constructor de la alarma
@@ -33,7 +33,7 @@ public class Alarma
 	public Alarma(String nom, String desc, Date fechaLan) 
 	{
 		nombre = nom;
-		descripción = desc;
+		descripcion = desc;
 		fechaLan = fechaLanzamiento;
 		fechaCreacion = new Date();
 	}
@@ -42,9 +42,9 @@ public class Alarma
 	 * Devuelve la descripción de la alarma
 	 * @return String con la descripción
 	 */
-	public String getDescripción() 
+	public String getDescripcion() 
 	{
-		return descripción;
+		return descripcion;
 	}
 	
 	/**
@@ -75,12 +75,12 @@ public class Alarma
 	}
 	
 	/**
-	 * Modifica la descripción de la alarma
-	 * @param descripción String con la nueva descripción
+	 * Modifica la descripcion de la alarma
+	 * @param descripcion String con la nueva descripción
 	 */
-	public void setDescripción(String descripción) 
+	public void setDescripcion(String descripcion) 
 	{
-		this.descripción = descripción;
+		this.descripcion = descripcion;
 	}
 	
 	/**

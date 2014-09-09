@@ -45,4 +45,14 @@ public class MainActivity extends ActionBarActivity {
     	Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);
 		startActivity(intent);
 	}
+    
+    /**
+     * Muestra la actividad del juego 
+     * @param v View vista genérica de carga de la actividad
+     */
+    public void verJuego(View v) 
+    {
+    	Intent intent = new Intent(getApplicationContext(), JuegoActivity.class);
+		startActivity(intent);
+	}
 }
