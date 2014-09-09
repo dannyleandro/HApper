@@ -15,4 +15,11 @@
         android:text="@string/btn_alarmas"
         android:onClick="verAlarmas" />
 
+    <Button
+        android:id="@+id/btnJuego"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_juego"
+        android:onClick="verJuego" />
+    <!-- No hay nada conectado aun, seria una aplicación vacia -->
 </LinearLayout>

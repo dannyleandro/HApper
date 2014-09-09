@@ -38,6 +38,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.AlarmasActivity" />
         </activity>
+        
+        <!-- Actividad asociada a la pantalla principal del juego mental -->
+        <activity
+            android:name=".JuegoActivity"
+            android:label="@string/title_activity_juego"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.MainActivity" />
+        </activity> 
     </application>
 
 </manifest>
