@@ -1,9 +1,14 @@
 package com.moviles.happer;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -14,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.moviles.mundo.AlarmReciever;
 import com.moviles.mundo.HApper;
 
 public class AgregarAlarmaActivity extends ActionBarActivity 
@@ -90,6 +96,15 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
 			System.out.println(fecha.getYear()+" - 1900 = " + (fecha.getYear()-1900));
 			instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
+			Intent intentAlarm = new Intent(getApplicationContext(), AlarmReciever.class);
+			AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+			System.out.println(fechaLanzamiento);
+			System.out.println(fechaLanzamiento.getTime());
+			GregorianCalendar gc = new GregorianCalendar(); 
+			Long time = gc.getTimeInMillis()+60*1000;
+			System.out.println(gc);
+			System.out.println(time);
+			alarmManager.set(AlarmManager.RTC_WAKEUP, fechaLanzamiento.getTime(), PendingIntent.getBroadcast(getApplicationContext(), 1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
 			Toast.makeText(getApplicationContext(), "La alarma se ha agregado correctamente", Toast.LENGTH_LONG).show();
 			finish( );
 		}
