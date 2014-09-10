@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:scrollbars="none"
-    tools:context="com.moviles.happer.DetalleAlarmaActivity" >
+    tools:context="com.moviles.happer.ModificarAlarmaActivity" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -28,16 +28,14 @@
             android:text="@string/lbl_Nombre"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/lblNombreAlarma"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
-            android:text="@string/lbl_Nombre"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/darker_gray" />
-    
+        <EditText
+            android:id="@+id/txtNombreAlarma"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:height="50dp"
+            android:hint="@string/lbl_Nombre_Alarma"/>
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="fill_parent"
@@ -45,16 +43,14 @@
             android:text="@string/lbl_Descripcion"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/lblDescripcion"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
-            android:text="@string/lbl_Descripcion"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/darker_gray" />
-        
+        <EditText
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:height="100dp"
+            android:hint="@string/lbl_Descripcion_Alarma"
+            android:inputType="textMultiLine"/>
+
 		<TextView
             android:id="@+id/textView5"
             android:layout_width="fill_parent"
@@ -66,11 +62,12 @@
 		    android:id="@+id/lblFechaCreacion"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:paddingBottom="20dp"
-		    android:paddingTop="20dp"
+		    android:gravity="center_horizontal"
+		    android:paddingBottom="10dp"
+		    android:paddingTop="10dp"
 		    android:text="@string/lbl_Fecha_Creacion"
 		    android:textAppearance="?android:attr/textAppearanceLarge"
-		    android:textColor="@android:color/darker_gray" />
+		    android:textColor="@android:color/holo_blue_dark" />
         
         <TextView
             android:id="@+id/textView3"
@@ -79,45 +76,46 @@
             android:text="@string/lbl_Fecha_Lanzamiento"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TextView
-            android:id="@+id/lblFechaLanzamiento"
+        <DatePicker
+            android:id="@+id/dpAlarma"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"
-            android:text="@string/lbl_Fecha_Lanzamiento"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/darker_gray" />
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"/>
         
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Hora"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TimePicker
+            android:id="@+id/tpAlarma"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="20dp" >
+            android:orientation="horizontal" >
 
             <Button
-                android:id="@+id/btnAceptarDetalleAlarma"
+                android:id="@+id/btnEstablecerAlarma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="aceptarDetalleAlarma"
-                android:text="@string/btn_Aceptar"
+                android:onClick="establecerAlarma"
+                android:text="@string/btn_Establecer"
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnModificarAlarma"
+                android:id="@+id/btnCancelarModificacionAlarma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="modificarAlarma"
-                android:text="@string/btn_Modificar"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/btnEliminarAlarma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="eliminarAlarma"
-                android:text="@string/btn_Eliminar"
+                android:onClick="cancelarModificacionAlarma"
+                android:text="@string/btn_Cancelar"
                 android:textSize="18sp" />
             
         </LinearLayout>

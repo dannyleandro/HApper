@@ -66,6 +66,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.AlarmasActivity" />
         </activity>
+        <activity
+            android:name=".ModificarAlarmaActivity"
+            android:label="@string/title_activity_modificar_alarma"
+            android:parentActivityName=".DetalleAlarmaActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.DetalleAlarmaActivity" />
+        </activity>
     </application>
 
 </manifest>

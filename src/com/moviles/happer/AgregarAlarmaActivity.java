@@ -87,7 +87,8 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 		{
 			System.out.println(fecha.getDayOfMonth() + "/" + fecha.getMonth() + "/" + fecha.getYear());
 			System.out.println(hora.getCurrentHour() + ":" + hora.getCurrentMinute());
-			Date fechaLanzamiento = new Date(fecha.getYear(), fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
+			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
+			System.out.println(fecha.getYear()+" - 1900 = " + (fecha.getYear()-1900));
 			instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
 			Toast.makeText(getApplicationContext(), "La alarma se ha agregado correctamente", Toast.LENGTH_LONG).show();
 			finish( );

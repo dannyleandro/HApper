@@ -8,13 +8,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.moviles.mundo.Alarma;
@@ -34,14 +32,14 @@ public class DetalleAlarmaActivity extends Activity
 	
 	
 	/**
-	 * Atributo que modela el cuadro de texto para ingresar el nombre de la alarma
+	 * Atributo que modela el label para mostrar el nombre de la alarma
 	 */
-	private EditText nomb;
+	private TextView nomb;
 	
 	/**
-	 * Atributo que modela el cuadro de texto para ingresar la descripción de la alarma
+	 * Atributo que modela el label para mostrar la descripción de la alarma
 	 */
-	private EditText desc;
+	private TextView desc;
 	
 	/**
 	 * Atributo que modela el campo que muestra la fecha de creacion de la alarma
@@ -49,17 +47,11 @@ public class DetalleAlarmaActivity extends Activity
 	private TextView fechaCreacion;
 	
 	/**
-	 * Atributo que modela el DatePicker para ingresar la fecha de lanzamiento de la alarma
+	 * Atributo que modela el campo que muestra la fecha de lanzamiento de la alarma
 	 */
-	private DatePicker fecha;
+	private TextView fecha;
 	
-	/**
-	 * 	Atributo que modela el TimePicker para ingresar la hora de lanzamiento de la alarma
-	 */
-	private TimePicker hora;
-	
-	@SuppressLint("SimpleDateFormat") 
-	@SuppressWarnings("deprecation")
+	@SuppressLint("SimpleDateFormat")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -77,18 +69,15 @@ public class DetalleAlarmaActivity extends Activity
 		}
 		else
 		{
-			nomb = (EditText) findViewById(R.id.txtNombreAlarma);
+			nomb = (TextView) findViewById(R.id.lblNombreAlarma);
 			nomb.setText(nombreAlarma);
-			desc = (EditText) findViewById(R.id.txtDescripcion);
+			desc = (TextView) findViewById(R.id.lblDescripcion);
 			desc.setText(a.getDescripcion());
 			fechaCreacion = (TextView) findViewById(R.id.lblFechaCreacion);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 			fechaCreacion.setText(sdf.format(a.getFechaCreacion()));
-			fecha = (DatePicker) findViewById(R.id.dpAlarma);
-			fecha.updateDate(a.getFechaLanzamiento().getYear(), a.getFechaLanzamiento().getMonth(), a.getFechaLanzamiento().getDate());
-			hora = (TimePicker) findViewById(R.id.tpAlarma);
-			hora.setCurrentHour(a.getFechaLanzamiento().getHours());
-			hora.setCurrentMinute(a.getFechaLanzamiento().getMinutes());
+			fecha = (TextView) findViewById(R.id.lblFechaLanzamiento);
+			fecha.setText(sdf.format(a.getFechaLanzamiento()));
 		}
 	}
 
@@ -113,31 +102,51 @@ public class DetalleAlarmaActivity extends Activity
 	}
 	
 	/**
-	 * Método encargado de mostrar un mensaje
-	 * @param title Titulo del mensaje a mostrar
-	 * @param message Mensaje a mostrar
+	 * Metodo encargado de manejar el botón aceptar en la vista de detalle de la alarma
+	 * @param v View
 	 */
-	private void showDialog(String title, String message) 
-	{
-		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-		alertDialog.setTitle(title);
-		alertDialog.setCancelable(false);
-		alertDialog.setMessage(message);
-		alertDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() 
-		{
-			public void onClick(DialogInterface dialog,int id) {
-				
-			}
-		});
-		AlertDialog dialog= alertDialog.create();
-		dialog.show();	
-	}
 	public void aceptarDetalleAlarma(View v)
 	{
-		finish();
+		Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);
+		startActivity(intent);
 	}
+	
+	/**
+	 * Metodo encargado de mostrar la ventana para modificar la alarma
+	 * @param v View
+	 */
 	public void modificarAlarma(View v)
 	{
-		showDialog("Modificar Alarma","se modificará la alarma");
+		Intent intent = new Intent(getApplicationContext(), ModificarAlarmaActivity.class);
+		intent.putExtra("nombreAlarma", nombreAlarma);
+		startActivity(intent);
+	}
+	
+	@Override
+	public void onBackPressed() 
+	{
+	   Log.d("CDA", "onBackPressed Called");
+	   Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);
+		startActivity(intent);
+	}
+	
+	public void eliminarAlarma(View v)
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		alertDialog.setTitle("Eliminar Alarma");
+		alertDialog.setCancelable(false);
+		alertDialog.setMessage("¿Está seguro que desea eliminar la alarma?");
+		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		alertDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog,int id) 
+			{
+				instancia.eliminarAlarma(nomb.getText().toString());
+				DetalleAlarmaActivity.this.finish();
+			}
+		});
+		alertDialog.setNegativeButton(android.R.string.no, null);
+		AlertDialog dialog = alertDialog.create();
+		dialog.show();
 	}
 }

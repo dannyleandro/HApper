@@ -75,4 +75,24 @@ public class HApper
 	{
 		alarmas.add(new Alarma(nomb, desc, fecha));
 	}
+
+	public void modificarAlarma(String nombreAnt, String nombreNue, String desc, Date fechaLan) 
+	{
+		Alarma al = darAlarma(nombreAnt);
+		al.setNombre(nombreNue);
+		al.setDescripcion(desc);
+		al.setFechaLanzamiento(fechaLan);
+	}
+
+	public void eliminarAlarma(String nomb) 
+	{
+		for (Alarma al : alarmas) 
+		{
+			if(al.getNombre().equals(nomb))
+			{
+				alarmas.remove(al);
+				break;
+			}
+		}
+	}
 }

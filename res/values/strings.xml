@@ -31,5 +31,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="lbl_Fecha_Creacion">Fecha de creación:</string>
     <string name="btn_Modificar">Modificar</string>
+    <string name="btn_Eliminar">Eliminar</string>
+    <string name="title_activity_modificar_alarma">ModificarAlarmaActivity</string>
+    <string name="btn_Establecer">Establecer</string>
 
 </resources>
