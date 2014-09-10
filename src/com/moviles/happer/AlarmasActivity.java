@@ -52,7 +52,6 @@ public class AlarmasActivity extends ActionBarActivity
 				intent.putExtra("nombreAlarma", nombreAlarma);
 				startActivity(intent);
 			}
-
 		});
 	}
 	
@@ -63,11 +62,11 @@ public class AlarmasActivity extends ActionBarActivity
 		String[] alarmas = instancia.darAlarmas();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
 		listaAlarmas.setAdapter(adapter);
+		TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
 		if(alarmas.length > 0)
-		{
-			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
 			tituloLista.setText("Alarmas Agregadas");
-		}
+		else
+			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
 	}
 
 	@Override
