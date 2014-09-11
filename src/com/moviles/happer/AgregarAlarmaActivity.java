@@ -1,7 +1,6 @@
 package com.moviles.happer;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -64,7 +63,8 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.agregar_alarma, menu);
 		return true;
@@ -91,21 +91,18 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 	{
 		if(!nomb.getText().toString().equals("") && !desc.getText().toString().equals(""))
 		{
-			System.out.println(fecha.getDayOfMonth() + "/" + fecha.getMonth() + "/" + fecha.getYear());
-			System.out.println(hora.getCurrentHour() + ":" + hora.getCurrentMinute());
 			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
-			System.out.println(fecha.getYear()+" - 1900 = " + (fecha.getYear()-1900));
+			
 			instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
+			
 			Intent intentAlarm = new Intent(getApplicationContext(), AlarmReciever.class);
+			intentAlarm.putExtra("nombreAlarma", nomb.getText().toString());
+			
 			AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-			System.out.println(fechaLanzamiento);
-			System.out.println(fechaLanzamiento.getTime());
-			GregorianCalendar gc = new GregorianCalendar(); 
-			Long time = gc.getTimeInMillis()+60*1000;
-			System.out.println(gc);
-			System.out.println(time);
 			alarmManager.set(AlarmManager.RTC_WAKEUP, fechaLanzamiento.getTime(), PendingIntent.getBroadcast(getApplicationContext(), 1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
+			
 			Toast.makeText(getApplicationContext(), "La alarma se ha agregado correctamente", Toast.LENGTH_LONG).show();
+			
 			finish( );
 		}
 		else
@@ -123,7 +120,6 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 	{
 		finish( );
 	}
-	
 	
 	/**
 	 * Método encargado de mostrar un mensaje
