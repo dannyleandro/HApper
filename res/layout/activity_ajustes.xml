@@ -1,12 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:dividerPadding="10dp"
-    android:gravity="center|top"
-    android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    tools:context="com.moviles.happer.AjustesActivity" >
-</LinearLayout>
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/btnAjustesAlarma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="52dp"
+        android:layout_y="98dp"
+        android:onClick="verAjustesAlarmas"
+        android:text="@string/btn_ajustes_alarma" />
+
+    <Button
+        android:id="@+id/btnAjustesJuego"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_x="57dp"
+        android:layout_y="159dp"
+        android:text="Ajustes del Juego" />
+
+    <Button
+        android:id="@+id/btnAjustesBotonPanico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="49dp"
+        android:layout_y="218dp"
+        android:text="Ajustes Botón de Pánico" />
+
+    <Button
+        android:id="@+id/btnAcerca"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="218dp"
+        android:layout_y="412dp"
+        android:text="Acerca de..." />
+
+</AbsoluteLayout>

@@ -8,20 +8,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
-
-public class AjustesActivity extends ActionBarActivity
+public class AjustesAlarmasActivity extends ActionBarActivity
 {
 	/**
 	 * Atributo que modela la instancia del mundo
 	 */
 	private HApper instancia;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_ajustes);
+		setContentView(R.layout.activity_ajustes_alarma);
 		instancia = HApper.darInstancia();
 	}
 	
@@ -29,7 +33,7 @@ public class AjustesActivity extends ActionBarActivity
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-				getMenuInflater().inflate(R.menu.ajustes, menu);
+				getMenuInflater().inflate(R.menu.ajustes_alarma, menu);
 				return true;
 	}
 
@@ -43,15 +47,5 @@ public class AjustesActivity extends ActionBarActivity
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	/**
-	 * Metodo encargado de desplegar la vista para realizar los ajustes de una alarma
-	 * @param v View
-	 */
-	public void verAjustesAlarmas(View v) 
-	{
-		Intent intent = new Intent(getApplicationContext(), AjustesAlarmasActivity.class);
-		startActivity(intent);
 	}
 }
