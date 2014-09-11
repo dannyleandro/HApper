@@ -33,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.82"
+            android:onClick="verAjustes"
             android:text="@string/btn_ajustes" />
 
         <Button
