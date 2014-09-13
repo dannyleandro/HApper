@@ -24,7 +24,7 @@ public class HApper
 	{
 		super();
 		alarmas = new ArrayList<Alarma>();
-		bP = new BotonPanico("Danny", "3138176004","Ha ocurrido una emergencia");
+		bP = new BotonPanico("Danny", "5556","Ha ocurrido una emergencia");
 	}
 	
 	/**

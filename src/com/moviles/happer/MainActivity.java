@@ -1,17 +1,23 @@
 package com.moviles.happer;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 import com.moviles.mundo.HApper;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -79,10 +85,7 @@ public class MainActivity extends ActionBarActivity {
     
     public void activarBotonPanico(View v)
     {
-    	//instancia.cambiarInfoBP("Danny Hurtado","123456789","Ha ocurrido una emergencia");
-    	//  
-    	
-    	new AlertDialog.Builder(this)
+     	new AlertDialog.Builder(this)
         .setTitle("Emergencia!!!")
         .setMessage("Se enviara un mensaje automático a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -106,9 +109,16 @@ public class MainActivity extends ActionBarActivity {
            smsManager.sendTextMessage(phoneNo, null, message, null, null);
            Toast.makeText(getApplicationContext(), "SMS sent.",
            Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-        	
-        	showDialog("Error", "No se envió el mensaje");
+        } 
+        catch (Exception e) 
+        {
+        	Writer writer = new StringWriter();
+        	PrintWriter printWriter = new PrintWriter(writer);
+        	e.printStackTrace(printWriter);
+        	String s = writer.toString();
+ 
+        	showDialog("Error", s);
+        
         }
      } 
     
@@ -132,5 +142,4 @@ public class MainActivity extends ActionBarActivity {
 		AlertDialog dialog= alertDialog.create();
 		dialog.show();	
 	}
-    
 }
