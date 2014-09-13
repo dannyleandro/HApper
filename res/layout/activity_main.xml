@@ -9,6 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.moviles.happer.MainActivity" >
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_panic"
+        android:layout_width="134dp"
+        android:layout_height="125dp"
+        android:background="@drawable/panic_button"
+        android:onClick="activarBotonPanico" />
+
     <Button
         android:id="@+id/btnAlarma"
         android:layout_width="match_parent"
@@ -17,6 +28,7 @@
         android:text="@string/btn_alarmas" />
 
     <!-- No hay nada conectado aun, seria una aplicación vacia -->
+
     <Button
         android:id="@+id/btnJuego"
         android:layout_width="match_parent"

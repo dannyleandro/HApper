@@ -3,6 +3,10 @@ package com.moviles.mundo;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * @author Santi
+ *
+ */
 public class HApper 
 {
 	/**
@@ -12,6 +16,7 @@ public class HApper
 	
 	private ArrayList<Alarma> alarmas;
 	
+	private BotonPanico bP;
 	/**
 	 * Constructor del mundo que inicializa 
 	 */
@@ -19,6 +24,7 @@ public class HApper
 	{
 		super();
 		alarmas = new ArrayList<Alarma>();
+		bP = new BotonPanico("Danny", "3138176004","Ha ocurrido una emergencia");
 	}
 	
 	/**
@@ -84,6 +90,11 @@ public class HApper
 		al.setFechaLanzamiento(fechaLan);
 	}
 
+	
+	/**
+	 * Metodo encargado de eliminar una alarma existente
+	 * @param nomb String con el nombre de la alarma
+	 */
 	public void eliminarAlarma(String nomb) 
 	{
 		for (Alarma al : alarmas) 
@@ -94,5 +105,23 @@ public class HApper
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * Metodo encargado de modificar las propiedades del botón de pánico
+	 * @param nNombre nuevo nombre
+	 * @param nTelefono nuevo telefono
+	 * @param nMensaje nuevo mensaje
+	 */
+	public void cambiarInfoBP(String nNombre, String nTelefono, String nMensaje)
+	{
+		bP.setNombreContacto(nNombre);
+		bP.setTelefonoContacto(nTelefono);
+		bP.setMensajeAEnviar(nMensaje);
+	}
+	
+	public String darNombreContactoBP()
+	{
+		return bP.getNombreContacto();
 	}
 }
