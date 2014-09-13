@@ -1,19 +1,36 @@
 package com.moviles.happer;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
+import com.moviles.mundo.HApper;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
+	
+	private HApper instancia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        instancia = HApper.darInstancia();
     }
 
     @Override
@@ -64,5 +81,65 @@ public class MainActivity extends ActionBarActivity {
     {
     	Intent intent = new Intent(getApplicationContext(), AjustesActivity.class);
 		startActivity(intent);
+	}
+    
+    public void activarBotonPanico(View v)
+    {
+     	new AlertDialog.Builder(this)
+        .setTitle("Emergencia!!!")
+        .setMessage("Se enviara un mensaje automático a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) { 
+                enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());
+            }
+         })
+        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) { 
+                // do nothing
+            }
+         })
+        .setIcon(android.R.drawable.ic_dialog_alert)
+         .show();
+    }
+    
+    protected void enviarMensajeSMS(String phoneNo, String message) 
+    {
+        try {
+           SmsManager smsManager = SmsManager.getDefault();
+           smsManager.sendTextMessage(phoneNo, null, message, null, null);
+           Toast.makeText(getApplicationContext(), "SMS sent.",
+           Toast.LENGTH_LONG).show();
+        } 
+        catch (Exception e) 
+        {
+        	Writer writer = new StringWriter();
+        	PrintWriter printWriter = new PrintWriter(writer);
+        	e.printStackTrace(printWriter);
+        	String s = writer.toString();
+ 
+        	showDialog("Error", s);
+        
+        }
+     } 
+    
+    /**
+	 * MÃ©todo encargado de mostrar un mensaje
+	 * @param title Titulo del mensaje a mostrar
+	 * @param message Mensaje a mostrar
+	 */
+	private void showDialog(String title, String message) 
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		alertDialog.setTitle(title);
+		alertDialog.setCancelable(false);
+		alertDialog.setMessage(message);
+		alertDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog,int id) {
+				
+			}
+		});
+		AlertDialog dialog= alertDialog.create();
+		dialog.show();	
 	}
 }

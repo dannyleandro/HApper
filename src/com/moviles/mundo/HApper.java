@@ -17,10 +17,20 @@ public class HApper
 	 */
 	private Hashtable<Integer, Alarma> alarmas;
 	
+	private BotonPanico bP;
 	/**
 	 * Instancia del manejador de la base de datos
 	 */
+<<<<<<< .merge_file_AFramz
 	private SQLiteHelper sqliteHelper;
+=======
+	public HApper() 
+	{
+		super();
+		alarmas = new ArrayList<Alarma>();
+		bP = new BotonPanico("Danny", "5556","Ha ocurrido una emergencia");
+	}
+>>>>>>> .merge_file_lqFsON
 	
 	/**
 	 * Devuelve la instancia del mundo
@@ -101,5 +111,33 @@ public class HApper
 	{
 		sqliteHelper.deleteAlarma(id);
 		alarmas.remove(id);
+	}
+	
+	/**
+	 * Metodo encargado de modificar las propiedades del botón de pánico
+	 * @param nNombre nuevo nombre
+	 * @param nTelefono nuevo telefono
+	 * @param nMensaje nuevo mensaje
+	 */
+	public void cambiarInfoBP(String nNombre, String nTelefono, String nMensaje)
+	{
+		bP.setNombreContacto(nNombre);
+		bP.setTelefonoContacto(nTelefono);
+		bP.setMensajeAEnviar(nMensaje);
+	}
+	
+	public String darNombreContactoBP()
+	{
+		return bP.getNombreContacto();
+	}
+	
+	public String darTelefonoContactoBP()
+	{
+		return bP.getTelefonoContacto();
+	}
+	
+	public String darMensajeAEnviarBP()
+	{
+		return bP.getMensajeAEnviar();
 	}
 }
