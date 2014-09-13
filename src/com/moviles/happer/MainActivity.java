@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -84,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
         .setMessage("Se enviara un mensaje automático a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) { 
-                // completar
+                enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());
             }
          })
         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -94,6 +97,40 @@ public class MainActivity extends ActionBarActivity {
          })
         .setIcon(android.R.drawable.ic_dialog_alert)
          .show();
-
     }
+    
+    protected void enviarMensajeSMS(String phoneNo, String message) 
+    {
+        try {
+           SmsManager smsManager = SmsManager.getDefault();
+           smsManager.sendTextMessage(phoneNo, null, message, null, null);
+           Toast.makeText(getApplicationContext(), "SMS sent.",
+           Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+        	
+        	showDialog("Error", "No se envió el mensaje");
+        }
+     } 
+    
+    /**
+	 * MÃ©todo encargado de mostrar un mensaje
+	 * @param title Titulo del mensaje a mostrar
+	 * @param message Mensaje a mostrar
+	 */
+	private void showDialog(String title, String message) 
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		alertDialog.setTitle(title);
+		alertDialog.setCancelable(false);
+		alertDialog.setMessage(message);
+		alertDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog,int id) {
+				
+			}
+		});
+		AlertDialog dialog= alertDialog.create();
+		dialog.show();	
+	}
+    
 }

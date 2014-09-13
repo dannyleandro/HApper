@@ -124,4 +124,14 @@ public class HApper
 	{
 		return bP.getNombreContacto();
 	}
+	
+	public String darTelefonoContactoBP()
+	{
+		return bP.getTelefonoContacto();
+	}
+	
+	public String darMensajeAEnviarBP()
+	{
+		return bP.getMensajeAEnviar();
+	}
 }
