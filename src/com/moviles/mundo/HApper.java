@@ -1,7 +1,9 @@
 package com.moviles.mundo;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
+
+import android.content.Context;
 
 public class HApper 
 {
@@ -10,40 +12,45 @@ public class HApper
 	 */
 	private static HApper instancia;
 	
-	private ArrayList<Alarma> alarmas;
+	/**
+	 * Estructura de datos con las alarmas
+	 */
+	private Hashtable<Integer, Alarma> alarmas;
 	
 	/**
-	 * Constructor del mundo que inicializa 
+	 * Instancia del manejador de la base de datos
 	 */
-	public HApper() 
-	{
-		super();
-		alarmas = new ArrayList<Alarma>();
-	}
+	private SQLiteHelper sqliteHelper;
 	
 	/**
 	 * Devuelve la instancia del mundo
 	 * @return instancia de HApper
 	 */
-	public static HApper darInstancia() 
+	public static HApper darInstancia(Context context) 
 	{
 		if(instancia == null)
-			instancia = new HApper();
+			instancia = new HApper(context);
+		
 		return instancia;
+	}
+	
+	/**
+	 * Constructor del mundo que inicializa 
+	 */
+	public HApper(Context context) 
+	{
+		super();
+		sqliteHelper = new SQLiteHelper(context);
+		alarmas = sqliteHelper.getAllAlarmas();
 	}
 	
 	/**
 	 * Devuelve la lista de los nombres de las alarmas
 	 * @return arreglo de String con los nombres de las alarmas
 	 */
-	public String [] darAlarmas() 
+	public Hashtable<Integer, Alarma> darAlarmas()
 	{
-		String [] listaAlarmas = new String[alarmas.size()];
-		for (int i = 0; i < alarmas.size(); i++) 
-		{
-			listaAlarmas[i] = alarmas.get(i).getNombre();
-		}
-		return listaAlarmas;
+		return alarmas;
 	}
 	
 	/**
@@ -51,18 +58,9 @@ public class HApper
 	 * @param nomb String con el nombre de la alarma a buscar
 	 * @return Alarma que corresponde con el nombre pasado en el parametro
 	 */
-	public Alarma darAlarma(String nomb)
+	public Alarma darAlarma(int id)
 	{
-		Alarma a = null;
-		for (Alarma al : alarmas) 
-		{
-			if(al.getNombre().equals(nomb))
-			{
-				a = al;
-				break;
-			}
-		}
-		return a;
+		return alarmas.get(id);
 	}
 	
 	/**
@@ -73,26 +71,35 @@ public class HApper
 	 */
 	public void agregarAlarma(String nomb, String desc, Date fecha)
 	{
-		alarmas.add(new Alarma(nomb, desc, fecha));
+		Date feCre = new Date();
+		long id = sqliteHelper.addAlarma(nomb, desc, fecha.getTime(), feCre.getTime());
+		if(id >= 0)
+			alarmas.put((int) id, new Alarma((int) id, nomb, desc, fecha, feCre));
 	}
 
-	public void modificarAlarma(String nombreAnt, String nombreNue, String desc, Date fechaLan) 
+	/**
+	 * Metodo encargado de modificar una alarma 
+	 * @param id de la alarma que se va a modificar
+	 * @param desc Descripcion nueva de la alarma
+	 * @param nomb Nombre nuevo de la alarma
+	 * @param fechaLan nueva fecha de lanzamiento
+	 */
+	public void modificarAlarma(int id, String nomb, String desc, Date fechaLan) 
 	{
-		Alarma al = darAlarma(nombreAnt);
-		al.setNombre(nombreNue);
+		Alarma al = alarmas.get(id);
+		al.setNombre(nomb);
 		al.setDescripcion(desc);
 		al.setFechaLanzamiento(fechaLan);
+		sqliteHelper.updateAlarma(id, nomb, desc, fechaLan.getTime());
 	}
 
-	public void eliminarAlarma(String nomb) 
+	/**
+	 * Metodo que elimina una alarma
+	 * @param id de la alarma a eliminar
+	 */
+	public void eliminarAlarma(int id) 
 	{
-		for (Alarma al : alarmas) 
-		{
-			if(al.getNombre().equals(nomb))
-			{
-				alarmas.remove(al);
-				break;
-			}
-		}
+		sqliteHelper.deleteAlarma(id);
+		alarmas.remove(id);
 	}
 }

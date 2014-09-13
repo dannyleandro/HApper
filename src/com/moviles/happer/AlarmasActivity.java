@@ -1,5 +1,7 @@
 package com.moviles.happer;
 
+import java.util.ArrayList;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.moviles.mundo.Alarma;
 import com.moviles.mundo.HApper;
 
 public class AlarmasActivity extends ActionBarActivity 
@@ -31,26 +34,30 @@ public class AlarmasActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarmas);
-		instancia = HApper.darInstancia(); 
+		instancia = HApper.darInstancia(getApplicationContext()); 
 		
 		listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
-		String[] alarmas = instancia.darAlarmas();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
+		ArrayList<Alarma> alarmas = new ArrayList<Alarma>(instancia.darAlarmas().values());
+		
+		ArrayAdapter<Alarma> adapter = new ArrayAdapter<Alarma>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
 		listaAlarmas.setAdapter(adapter);
-		if(alarmas.length == 0)
+		if(alarmas.size() == 0)
 		{
 			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
 			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
 		}
 		listaAlarmas.setOnItemClickListener(new OnItemClickListener() 
 		{
-			@SuppressWarnings("rawtypes")
-			public void onItemClick(AdapterView parent, View view,	int position, long id) 
-			{
-				String nombreAlarma = ((TextView) view).getText().toString();
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				@SuppressWarnings("unchecked")
+				ArrayAdapter<Alarma> ad = (ArrayAdapter<Alarma>) parent.getAdapter();
+				Alarma al = ad.getItem(position);
+				
 				Intent intent = new Intent(getApplicationContext(), DetalleAlarmaActivity.class);
-				intent.putExtra("nombreAlarma", nombreAlarma);
+				intent.putExtra("idAlarma", al.getId());
 				startActivity(intent);
+				System.out.println(position +": "+al.getId() + "-" + al.getNombre());
 			}
 		});
 	}
@@ -59,11 +66,12 @@ public class AlarmasActivity extends ActionBarActivity
 	protected void onResume() 
 	{
 		super.onResume();
-		String[] alarmas = instancia.darAlarmas();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
+		
+		ArrayList<Alarma> alarmas = new ArrayList<Alarma>(instancia.darAlarmas().values());
+		ArrayAdapter<Alarma> adapter = new ArrayAdapter<Alarma>(this, android.R.layout.simple_list_item_1, android.R.id.text1, alarmas);
 		listaAlarmas.setAdapter(adapter);
 		TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
-		if(alarmas.length > 0)
+		if(alarmas.size() > 0)
 			tituloLista.setText("Alarmas Agregadas");
 		else
 			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");

@@ -1,18 +1,11 @@
 package com.moviles.happer;
 
-import com.moviles.mundo.HApper;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.moviles.mundo.HApper;
 
 public class AjustesAlarmasActivity extends ActionBarActivity
 {
@@ -26,7 +19,7 @@ public class AjustesAlarmasActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ajustes_alarma);
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(getApplicationContext());
 	}
 	
 	@Override

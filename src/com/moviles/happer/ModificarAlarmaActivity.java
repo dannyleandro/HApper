@@ -30,9 +30,9 @@ public class ModificarAlarmaActivity extends Activity
 	private HApper instancia;
 	
 	/**
-	 * Atributo que modela el nombre de la alarma
+	 * Atributo que modela el id de la alarma
 	 */
-	private String nombreAlarma;
+	private int idAlarma;
 	
 	
 	/**
@@ -67,11 +67,11 @@ public class ModificarAlarmaActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modificar_alarma);
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(getApplicationContext());
 		
 		Intent intent = getIntent();
-		nombreAlarma = intent.getStringExtra("nombreAlarma");
-		Alarma a = instancia.darAlarma(nombreAlarma);
+		idAlarma = intent.getIntExtra("idAlarma", -1);
+		Alarma a = instancia.darAlarma(idAlarma);
 		if(a == null)
 		{	
 			Toast.makeText(getApplicationContext(), "Ocurrió un problema, la alarma no se puede modificar", Toast.LENGTH_LONG).show();
@@ -80,7 +80,7 @@ public class ModificarAlarmaActivity extends Activity
 		else
 		{
 			nomb = (EditText) findViewById(R.id.txtNombreAlarma);
-			nomb.setText(nombreAlarma);
+			nomb.setText(a.getNombre());
 			desc = (EditText) findViewById(R.id.txtDescripcion);
 			desc.setText(a.getDescripcion());
 			fechaCreacion = (TextView) findViewById(R.id.lblFechaCreacion);
@@ -146,10 +146,10 @@ public class ModificarAlarmaActivity extends Activity
 			System.out.println(hora.getCurrentHour() + ":" + hora.getCurrentMinute());
 			@SuppressWarnings("deprecation")
 			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
-			instancia.modificarAlarma(nombreAlarma, nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
+			instancia.modificarAlarma(idAlarma, nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
 			Toast.makeText(getApplicationContext(), "La alarma se ha modificado correctamente", Toast.LENGTH_LONG).show();
 			Intent intent = new Intent(getApplicationContext(), DetalleAlarmaActivity.class);
-			intent.putExtra("nombreAlarma", nomb.getText().toString());
+			intent.putExtra("idAlarma", idAlarma);
 			startActivity(intent);
 		}
 		else

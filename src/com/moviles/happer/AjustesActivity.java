@@ -22,7 +22,7 @@ public class AjustesActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ajustes);
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(getApplicationContext());
 	}
 	
 	@Override

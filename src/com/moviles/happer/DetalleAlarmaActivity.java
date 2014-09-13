@@ -26,9 +26,9 @@ public class DetalleAlarmaActivity extends Activity
 	private HApper instancia;
 	
 	/**
-	 * Atributo que modela el nombre de la alarma
+	 * Atributo que modela el id de la alarma
 	 */
-	private String nombreAlarma;
+	private int idAlarma;
 	
 	
 	/**
@@ -57,11 +57,13 @@ public class DetalleAlarmaActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_alarma);
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(getApplicationContext());
 		
 		Intent intent = getIntent();
-		nombreAlarma = intent.getStringExtra("nombreAlarma");
-		Alarma a = instancia.darAlarma(nombreAlarma);
+		idAlarma = intent.getIntExtra("idAlarma", -1);
+		
+		Alarma a = instancia.darAlarma(idAlarma);
+		
 		if(a == null)
 		{	
 			Toast.makeText(getApplicationContext(), "Ocurrió un problema, la alarma no se encuentra", Toast.LENGTH_LONG).show();
@@ -70,7 +72,7 @@ public class DetalleAlarmaActivity extends Activity
 		else
 		{
 			nomb = (TextView) findViewById(R.id.lblNombreAlarma);
-			nomb.setText(nombreAlarma);
+			nomb.setText(a.getNombre());
 			desc = (TextView) findViewById(R.id.lblDescripcion);
 			desc.setText(a.getDescripcion());
 			fechaCreacion = (TextView) findViewById(R.id.lblFechaCreacion);
@@ -118,7 +120,7 @@ public class DetalleAlarmaActivity extends Activity
 	public void modificarAlarma(View v)
 	{
 		Intent intent = new Intent(getApplicationContext(), ModificarAlarmaActivity.class);
-		intent.putExtra("nombreAlarma", nombreAlarma);
+		intent.putExtra("idAlarma", idAlarma);
 		startActivity(intent);
 	}
 	
@@ -141,7 +143,7 @@ public class DetalleAlarmaActivity extends Activity
 		{
 			public void onClick(DialogInterface dialog,int id) 
 			{
-				instancia.eliminarAlarma(nomb.getText().toString());
+				instancia.eliminarAlarma(idAlarma);
 				DetalleAlarmaActivity.this.finish();
 			}
 		});

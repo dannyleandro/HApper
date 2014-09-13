@@ -1,6 +1,7 @@
 package com.moviles.mundo;
 
 import java.util.Date;
+import java.util.Hashtable;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -35,10 +36,9 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db) 
 	{
-		String CREATE_BOOK_TABLE = "CREATE TABLE alarmas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT )";
+		String crearTablaAlarmas = "CREATE TABLE alarmas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fechaLanzamiento INTEGER, fechaCreacion INTEGER)";
  
-        // create books table
-        db.execSQL(CREATE_BOOK_TABLE);
+        db.execSQL(crearTablaAlarmas);
 	}
 
 	@Override
@@ -59,28 +59,33 @@ public class SQLiteHelper extends SQLiteOpenHelper
     private static final String KEY_ID = "id";
     private static final String KEY_NOMBRE = "nombre";
     private static final String KEY_DESCRIPCION = "descripcion";
+    private static final String KEY_FECHA_LANZAMIENTO = "fechaLanzamiento";
+    private static final String KEY_FECHA_CREACION = "fechaCreacion";
  
-    private static final String[] COLUMNS = {KEY_ID, KEY_NOMBRE, KEY_DESCRIPCION};
+    private static final String[] COLUMNS = {KEY_ID, KEY_NOMBRE, KEY_DESCRIPCION, KEY_FECHA_LANZAMIENTO, KEY_FECHA_CREACION};
  
-    public void addAlarma(Alarma al)
+    public long addAlarma(String nomb, String desc, long fecLan, long fecCre)
     {
-    	Log.d("addAlarma", al.toString());
+    	Log.d("addAlarma", "Se inserta una nueva fila con los campos Nombre:" + nomb + " Descripcion:" + desc + " FechaLanzamiento:" + fecLan + " FechaCreacion:" + fecCre);
  
         SQLiteDatabase db = this.getWritableDatabase();
  
         ContentValues values = new ContentValues();
-        values.put(KEY_NOMBRE, al.getNombre());
-        values.put(KEY_DESCRIPCION, al.getDescripcion());
- 
-       db.insert(TABLA_ALARMAS, null, values); // key/value -> keys = column names/ values = column values
+        values.put(KEY_NOMBRE, nomb);
+        values.put(KEY_DESCRIPCION, desc);
+        values.put(KEY_FECHA_LANZAMIENTO, fecLan);
+        values.put(KEY_FECHA_CREACION, fecCre);
+        
+        Long id = db.insert(TABLA_ALARMAS, null, values); // key/value -> keys = column names/ values = column values
  
         // 4. close
         db.close();
+        return id;
     }
  
     public Alarma getAlarma(int id)
     {
-        // 1. get reference to readable DB
+    	// 1. get reference to readable DB
         SQLiteDatabase db = this.getReadableDatabase();
  
         // 2. build query
@@ -96,53 +101,78 @@ public class SQLiteHelper extends SQLiteOpenHelper
         if (cursor != null)
             cursor.moveToFirst();
  
-        // 4. build book object
-        Alarma alarma = new Alarma(cursor.getString(1), cursor.getString(2), new Date()); //Completar!!!!!!!!!!!
-        
-        Log.d("getBook("+id+")", alarma.toString());
- 
-        // 5. return book
+        // 4. build Alarma object
+        Alarma alarma = new Alarma(id, cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)));
+        db.close();
+
+        Log.d("getAlarma("+id+")", "Se obtiene la fila con los campos id:" + id + " Nombre:" + alarma.getNombre() + " Descripcion:" + alarma.getDescripcion() + " FechaLanzamiento:" + alarma.getFechaLanzamiento().toString() + " FechaCreacion:" + alarma.getFechaCreacion().toString());
+    	
+        // 5. return Alarma
         return alarma;
     }
  
      // Updating single book
-    public int updateAlarma(Alarma alarma) {
- 
+    public void updateAlarma(int id, String nomb, String desc, long fecLan) 
+    {
+    	Log.d("updateAlarma("+id+")", "Se actualiza la fila con los campos  id:" + id + " Nombre:" + nomb + " Descripcion:" + desc + " FechaLanzamiento:" + fecLan);
+    	
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
- 
+        
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
-        values.put(KEY_NOMBRE, alarma.getNombre()); // get title
-        values.put(KEY_DESCRIPCION, alarma.getDescripcion()); // get author
- 
+        values.put(KEY_NOMBRE, nomb);
+        values.put(KEY_DESCRIPCION, desc);
+        values.put(KEY_FECHA_LANZAMIENTO, fecLan);
+        
         // 3. updating row
-        int i = db.update(TABLA_ALARMAS, //table
-                values, // column/value
-                KEY_ID+" = ?", // selections
-                new String[] { String.valueOf(0) }); //selection args mmmmm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        //TODO completar
+        db.update(TABLA_ALARMAS, values, "id = ? ", new String[] { Integer.toString(id) } );
+        
         // 4. close
-        db.close();
-        return i;
- 
+        db.close(); 
     }
  
     // Deleting single book
-    public void deleteAlarma(Alarma alarma) 
+    public void deleteAlarma(int id) 
     {
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
-        db.delete(TABLA_ALARMAS, KEY_ID+" = ?", new String[] { String.valueOf(0) });
-        //TODO completar
+        db.delete(TABLA_ALARMAS, KEY_ID + " = ?", new String[] { Integer.toString(id) });
         
         // 3. close
         db.close();
  
-        Log.d("deleteBook", alarma.toString());
- 
+        Log.d("deleteAlarma("+id+")", "Se elimina la fila con el número de id:" + id);
+    }
+    public Hashtable<Integer, Alarma> getAllAlarmas() 
+    {
+    	Hashtable<Integer, Alarma> alarmas = new Hashtable<Integer, Alarma>();
+  
+        // 1. build the query
+        String query = "SELECT  * FROM " + TABLA_ALARMAS;
+  
+        // 2. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+  
+        // 3. go over each row, build book and add it to list
+        Alarma al = null;
+        if (cursor.moveToFirst()) 
+        {
+            do 
+            {
+                al = new Alarma(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)));
+                alarmas.put(al.getId(), al);
+            } 
+            while (cursor.moveToNext());
+        }
+  
+        Log.d("getAllAlarmas()", alarmas.toString());
+  
+        // return books
+        return alarmas;
     }
 
 }

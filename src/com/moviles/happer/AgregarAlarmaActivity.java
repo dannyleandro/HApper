@@ -54,7 +54,7 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agregar_alarma);
 		
-		instancia = HApper.darInstancia();
+		instancia = HApper.darInstancia(getApplicationContext());
 		
 		nomb = (EditText) findViewById(R.id.txtNombreAlarma);
 		desc = (EditText) findViewById(R.id.txtDescripcion);

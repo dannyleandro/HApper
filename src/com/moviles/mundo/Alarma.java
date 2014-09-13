@@ -1,9 +1,16 @@
 package com.moviles.mundo;
 
+import android.annotation.SuppressLint;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Alarma 
 {
+	/**
+	 * identificacion de la alarma
+	 */
+	private int id;
+	
 	/**
 	 * nombre de la alarma
 	 */
@@ -30,12 +37,13 @@ public class Alarma
 	 * @param desc descripción de la alarma
 	 * @param fechaLan fecha en la que será lanzada la alarma
 	 */
-	public Alarma(String nom, String desc, Date fechaLan) 
+	public Alarma(int ident, String nom, String desc, Date fechaLan, Date fecCre) 
 	{
+		id = ident;
 		nombre = nom;
 		descripcion = desc;
 		fechaLanzamiento = fechaLan;
-		fechaCreacion = new Date();
+		fechaCreacion = fecCre;
 	}
 	
 	/**
@@ -75,6 +83,15 @@ public class Alarma
 	}
 	
 	/**
+	 * Devuelve el id de la alarma
+	 * @return int con el id de la alarma
+	 */
+	public int getId() 
+	{
+		return id;
+	}
+	
+	/**
 	 * Modifica la descripcion de la alarma
 	 * @param descripcion String con la nueva descripción
 	 */
@@ -99,5 +116,13 @@ public class Alarma
 	public void setNombre(String nombre) 
 	{
 		this.nombre = nombre;
+	}
+	
+	@SuppressLint("SimpleDateFormat") 
+	@Override 
+	public String toString() 
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+		return nombre + "         " + descripcion + "\n" + sdf.format(fechaLanzamiento);
 	}
 }
