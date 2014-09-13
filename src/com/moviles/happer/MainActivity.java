@@ -4,21 +4,18 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import com.moviles.mundo.HApper;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.moviles.mundo.HApper;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -30,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        instancia = HApper.darInstancia();
+        instancia = HApper.darInstancia(getApplicationContext());
     }
 
     @Override
@@ -65,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
     
     /**
      * Muestra la actividad del juego 
-     * @param v View vista genérica de carga de la actividad
+     * @param v View vista genï¿½rica de carga de la actividad
      */
     public void verJuego(View v) 
     {
@@ -75,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
     
     /**
      * Muestra la actividad de los Ajustes
-     * @param v View vista genérica de carga de la actividad
+     * @param v View vista genï¿½rica de carga de la actividad
      */
     public void verAjustes(View v) 
     {
@@ -87,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
     {
      	new AlertDialog.Builder(this)
         .setTitle("Emergencia!!!")
-        .setMessage("Se enviara un mensaje automático a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
+        .setMessage("Se enviara un mensaje automï¿½tico a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) { 
                 enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());
