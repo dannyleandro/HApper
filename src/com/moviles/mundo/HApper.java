@@ -75,12 +75,13 @@ public class HApper
 	 * @param desc Descripcion de la alarma
 	 * @param fecha Fecha de lanzamiento de la alarma incluyendo su hora
 	 */
-	public void agregarAlarma(String nomb, String desc, Date fecha)
+	public int agregarAlarma(String nomb, String desc, Date fecha)
 	{
 		Date feCre = new Date();
 		long id = sqliteHelper.addAlarma(nomb, desc, fecha.getTime(), feCre.getTime());
 		if(id >= 0)
 			alarmas.put((int) id, new Alarma((int) id, nomb, desc, fecha, feCre));
+		return (int) id;
 	}
 
 	/**

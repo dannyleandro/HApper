@@ -142,8 +142,6 @@ public class ModificarAlarmaActivity extends Activity
 	{
 		if(!nomb.getText().toString().equals("") && !desc.getText().toString().equals(""))
 		{
-			System.out.println(fecha.getDayOfMonth() + "/" + fecha.getMonth() + "/" + fecha.getYear());
-			System.out.println(hora.getCurrentHour() + ":" + hora.getCurrentMinute());
 			@SuppressWarnings("deprecation")
 			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
 			instancia.modificarAlarma(idAlarma, nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);

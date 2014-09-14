@@ -93,10 +93,10 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 		{
 			Date fechaLanzamiento = new Date(fecha.getYear()-1900, fecha.getMonth(), fecha.getDayOfMonth(), hora.getCurrentHour(), hora.getCurrentMinute());
 			
-			instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
+			int id = instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento);
 			
 			Intent intentAlarm = new Intent(getApplicationContext(), AlarmReciever.class);
-			intentAlarm.putExtra("nombreAlarma", nomb.getText().toString());
+			intentAlarm.putExtra("idAlarma", id);
 			
 			AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 			alarmManager.set(AlarmManager.RTC_WAKEUP, fechaLanzamiento.getTime(), PendingIntent.getBroadcast(getApplicationContext(), 1,  intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT));
