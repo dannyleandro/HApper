@@ -20,14 +20,19 @@
         android:background="@drawable/panic_button"
         android:onClick="activarBotonPanico" />
 
+    <!-- No hay nada conectado aun, seria una aplicación vacia -->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btnAlarma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="verAlarmas"
         android:text="@string/btn_alarmas" />
-
-    <!-- No hay nada conectado aun, seria una aplicación vacia -->
 
     <Button
         android:id="@+id/btnJuego"
@@ -36,23 +41,29 @@
         android:onClick="verJuego"
         android:text="@string/btn_juego" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="47dp" >
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btnAjustes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.82"
-            android:onClick="verAjustes"
-            android:text="@string/btn_ajustes" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <Button
-            android:id="@+id/btnAyuda"
-            android:layout_width="144dp"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_ayuda" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:onClick="verAjustes"
+        android:text="@string/btn_ajustes" />
+
+    <Button
+        android:id="@+id/btnAyuda"
+        android:layout_width="131dp"
+        android:layout_height="wrap_content"
+        android:onClick="verAyuda"
+        android:text="@string/btn_ayuda" />
 
 </LinearLayout>

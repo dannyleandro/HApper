@@ -5,9 +5,6 @@
     <string name="action_settings">Settings</string>
 
     <!-- Informacion relativa a los ajustes -->
-    <string name="btn_ajustes">Ajustes</string>
-    <string name="title_activity_ajustes">Ajustes</string>
-    <string name="btn_ajustes_alarma">Ajustes de la Alarma</string>
     <string name="btn_ayuda">Ayuda</string>
 
     <!-- Informacion relativa a el juego -->
@@ -50,6 +47,11 @@
     <string name="lbl_pregunta">Enunciado:</string>
     <string name="lbl_Respuesta_Correcta">Respuesta correcta:</string>
     <string name="lbl_Alternativa">Altenativa:</string>
-    
+    <string name="title_activity_ayuda">Ayuda</string>
+
+    <!-- Informacion relativa a las preferencias -->
+    <string name="btn_ajustes">Ajustes</string>
+    <string name="title_activity_app_preferences">AppPreferencesActivity</string>
+    <string name="title_activity_ajustes">AjustesActivity</string>
 
 </resources>

@@ -54,14 +54,7 @@
         </activity>
 
         <!-- Actividad asociada a la pantalla principal de los ajustes -->
-        <activity
-            android:name=".AjustesActivity"
-            android:label="@string/title_activity_ajustes"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moviles.MainActivity" />
-        </activity>
+
         <activity
             android:name=".DetalleAlarmaActivity"
             android:label="@string/title_activity_detalle_alarma"
@@ -105,6 +98,23 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.JuegoActivity" />
+        </activity>
+        <activity
+            android:name=".AyudaActivity"
+            android:label="@string/title_activity_ayuda"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".AjustesActivity"
+            android:label="@string/title_activity_ajustes" >
         </activity>
     </application>
 
