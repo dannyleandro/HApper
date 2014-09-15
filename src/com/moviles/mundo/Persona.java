@@ -1,6 +1,9 @@
 package com.moviles.mundo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.annotation.SuppressLint;
 
 public class Persona 
 {
@@ -83,5 +86,12 @@ public class Persona
 		this.relacion = relacion;
 	}
 	
+	@SuppressLint("SimpleDateFormat") 
+	@Override 
+	public String toString() 
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+		return nombre + "\n " + relacion + "\n" + sdf.format(fechaNacimiento) ;
+	}
 	
 }

@@ -1,0 +1,104 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    android:scrollbars="none"
+    tools:context="com.moviles.happer.AgregarPersonaActivity" >
+   
+<LinearLayout
+    android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:scrollbars="none" >
+        
+    	<TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Nombre"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    	
+    	<EditText
+            android:id="@+id/txtNombrePersona"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:height="50dp"
+            android:hint="@string/lbl_Nombre_Persona" />
+    	
+    	 <TextView
+            android:id="@+id/textView2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Relacion"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    	 <EditText
+            android:id="@+id/txtRelacionPersona"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:height="100dp"
+            android:hint="@string/lbl_Relacion_Persona"
+            android:inputType="textMultiLine" />
+    	 
+    	 <TextView
+            android:id="@+id/textView3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Fecha_Nacimiento_Persona"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    	 
+    	 <DatePicker
+            android:id="@+id/dpPersona"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false" />
+    	
+    	<TextView
+            android:id="@+id/textView4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Genero_Persona"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    	
+    	
+    	<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" >
+            
+           <Button
+                android:id="@+id/btnAceptarAgregarAlarma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|left"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/btn_Aceptar"
+                android:width="150dp" 
+                android:onClick="agregarPersona"/>
+
+            <Button
+                android:id="@+id/btnCancelarAgregarAlarma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/btn_Cancelar"
+                android:width="150dp" 
+                android:onClick="cancelarAgregarPersona"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

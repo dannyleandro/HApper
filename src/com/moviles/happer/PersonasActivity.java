@@ -106,7 +106,7 @@ public class PersonasActivity extends Activity
 	 */
 	public void agregarPersona(View v)
 	{
-		Intent intent = new Intent(getApplicationContext(), AgregarAlarmaActivity.class);
+		Intent intent = new Intent(getApplicationContext(), AgregarPersonaActivity.class);
 		startActivity(intent);	
 	}
 }

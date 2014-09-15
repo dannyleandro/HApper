@@ -151,6 +151,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.PersonasActivity" />
         </activity>
+        <activity
+            android:name=".AgregarPersonaActivity"
+            android:label="@string/title_activity_agregar_persona"
+            android:parentActivityName=".PersonasActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.PersonasActivity" />
+        </activity>
     </application>
 
 </manifest>
