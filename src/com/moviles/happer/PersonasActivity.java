@@ -2,7 +2,6 @@ package com.moviles.happer;
 
 import java.util.ArrayList;
 
-import com.moviles.mundo.Alarma;
 import com.moviles.mundo.HApper;
 import com.moviles.mundo.Persona;
 
@@ -39,13 +38,15 @@ public class PersonasActivity extends Activity
 		instancia = HApper.darInstancia(getApplicationContext()); 
 		
 		listaPersonas = (ListView) findViewById(R.id.listaPersonas);
+		
 		ArrayList<Persona> personas = new ArrayList<Persona>(instancia.darPersonas().values());
 		
 		ArrayAdapter<Persona> adapter = new ArrayAdapter<Persona>(this, android.R.layout.simple_list_item_1, android.R.id.text1, personas);
 		listaPersonas.setAdapter(adapter);
+		
 		if(personas.size() == 0)
 		{
-			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaAlarmas);
+			TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaPersonas);
 			tituloLista.setText("No se encontraron personas, por favor agregue una nueva...");
 		}
 		listaPersonas.setOnItemClickListener(new OnItemClickListener() 
@@ -56,13 +57,29 @@ public class PersonasActivity extends Activity
 				ArrayAdapter<Persona> ad = (ArrayAdapter<Persona>) parent.getAdapter();
 				Persona p = ad.getItem(position);
 				
-				Intent intent = new Intent(getApplicationContext(), DetalleAlarmaActivity.class);
-				intent.putExtra("idAlarma", p.getId());
+				Intent intent = new Intent(getApplicationContext(), DetallePersonaActivity.class);
+				intent.putExtra("idPersona", p.getId());
 				startActivity(intent);
+				System.out.println(position +": "+p.getId() + "-" + p.getNombre());
 			}
 		});
 	}
 
+	@Override
+	protected void onResume() 
+	{
+		super.onResume();
+		
+		ArrayList<Persona> personas = new ArrayList<Persona>(instancia.darPersonas().values());
+		ArrayAdapter<Persona> adapter = new ArrayAdapter<Persona>(this, android.R.layout.simple_list_item_1, android.R.id.text1, personas);
+		listaPersonas.setAdapter(adapter);
+		TextView tituloLista = (TextView) findViewById(R.id.txtTituloListaPersonas);
+		if(personas.size() > 0)
+			tituloLista.setText("Personas Agregadas");
+		else
+			tituloLista.setText("No tiene personas, por favor agregue una nueva...");
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -71,7 +88,8 @@ public class PersonasActivity extends Activity
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+	public boolean onOptionsItemSelected(MenuItem item) 
+	{
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
@@ -88,6 +106,7 @@ public class PersonasActivity extends Activity
 	 */
 	public void agregarPersona(View v)
 	{
-		//TODO	
+		Intent intent = new Intent(getApplicationContext(), AgregarAlarmaActivity.class);
+		startActivity(intent);	
 	}
 }

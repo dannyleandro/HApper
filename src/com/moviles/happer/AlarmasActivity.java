@@ -34,6 +34,7 @@ public class AlarmasActivity extends ActionBarActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarmas);
+		
 		instancia = HApper.darInstancia(getApplicationContext()); 
 		
 		listaAlarmas = (ListView) findViewById(R.id.listaAlarmas);
@@ -65,6 +66,7 @@ public class AlarmasActivity extends ActionBarActivity
 	@Override
 	protected void onResume() 
 	{
+		
 		super.onResume();
 		
 		ArrayList<Alarma> alarmas = new ArrayList<Alarma>(instancia.darAlarmas().values());
@@ -75,6 +77,7 @@ public class AlarmasActivity extends ActionBarActivity
 			tituloLista.setText("Alarmas Agregadas");
 		else
 			tituloLista.setText("No tiene alarmas, por favor agregue una nueva...");
+	
 	}
 
 	@Override

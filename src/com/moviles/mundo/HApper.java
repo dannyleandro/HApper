@@ -52,6 +52,7 @@ public class HApper
 		super();
 		sqliteHelper = new SQLiteHelper(context);
 		alarmas = sqliteHelper.getAllAlarmas();
+		personas = sqliteHelper.getAllPersona();
 		bP = new BotonPanico("Danny", "5556","Ha ocurrido una emergencia");
 	}
 	

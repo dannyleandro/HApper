@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import com.moviles.mundo.HApper;
 
 
@@ -41,14 +40,14 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) 
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    	// Handle action bar item clicks here. The action bar will
+    			// automatically handle clicks on the Home/Up button, so long
+    			// as you specify a parent activity in AndroidManifest.xml.
+    			int id = item.getItemId();
+    			if (id == R.id.action_settings) {
+    				return true;
+    			}
+    			return super.onOptionsItemSelected(item);
     }
     
     /**
@@ -58,6 +57,16 @@ public class MainActivity extends ActionBarActivity {
     public void verAlarmas(View v) 
     {
     	Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);
+		startActivity(intent);
+	}
+    
+    /**
+     * Muestra la actividad de ayuda 
+     * @param v View
+     */
+    public void verAyuda(View v) 
+    {
+    	Intent intent = new Intent(getApplicationContext(), AyudaActivity.class);
 		startActivity(intent);
 	}
     
@@ -72,8 +81,8 @@ public class MainActivity extends ActionBarActivity {
 	}
     
     /**
-     * Muestra la actividad de los Ajustes
-     * @param v View vista gen�rica de carga de la actividad
+     * Muestra la actividad de ajustes 
+     * @param v View vista con los valores de los ajustes
      */
     public void verAjustes(View v) 
     {
@@ -140,4 +149,6 @@ public class MainActivity extends ActionBarActivity {
 		AlertDialog dialog= alertDialog.create();
 		dialog.show();	
 	}
+	
+	
 }
