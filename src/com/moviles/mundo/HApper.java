@@ -18,6 +18,11 @@ public class HApper
 	private Hashtable<Integer, Alarma> alarmas;
 	
 	/**
+	 * Estructura de datos con las personas
+	 */
+	private Hashtable<Integer, Persona> personas;
+	
+	/**
 	 * 
 	 */
 	private BotonPanico bP;
@@ -51,8 +56,8 @@ public class HApper
 	}
 	
 	/**
-	 * Devuelve la lista de los nombres de las alarmas
-	 * @return arreglo de String con los nombres de las alarmas
+	 * Devuelve la lista de las alarmas
+	 * @return Hashtable de las alarmas
 	 */
 	public Hashtable<Integer, Alarma> darAlarmas()
 	{
@@ -60,13 +65,32 @@ public class HApper
 	}
 	
 	/**
-	 * Devuelve una alarma dado su nombre
-	 * @param nomb String con el nombre de la alarma a buscar
-	 * @return Alarma que corresponde con el nombre pasado en el parametro
+	 * Devuelve la lista de las personas
+	 * @return Hashtable de las personas
+	 */
+	public Hashtable<Integer, Persona> darPersonas()
+	{
+		return personas;
+	}
+	
+	/**
+	 * Devuelve una alarma dado su id
+	 * @param id int con el id de la alarma a buscar
+	 * @return Alarma que corresponde con el id pasado en el parametro
 	 */
 	public Alarma darAlarma(int id)
 	{
 		return alarmas.get(id);
+	}
+	
+	/**
+	 * Devuelve una alarma dado su id
+	 * @param id int con el id de la alarma a buscar
+	 * @return Persona que corresponde con el id pasado en el parametro
+	 */
+	public Persona darPersona(int id)
+	{
+		return personas.get(id);
 	}
 	
 	/**
@@ -81,6 +105,22 @@ public class HApper
 		long id = sqliteHelper.addAlarma(nomb, desc, fecha.getTime(), feCre.getTime());
 		if(id >= 0)
 			alarmas.put((int) id, new Alarma((int) id, nomb, desc, fecha, feCre));
+		return (int) id;
+	}
+	
+	/**
+	 * Metodo encargado de agregar una nueva persona
+	 * @param nomb Nombre de la persona
+	 * @param feNac Fecha de nacimiento de la persona
+	 * @param esMale Genero de la persona, true si es masculino
+	 * @param rel relacion con el usuario
+	 * @return int id de la persona
+	 */
+	public int agregarPersona(String nomb, Date feNac, boolean esMale, String rel)
+	{
+		long id = sqliteHelper.addPersona(nomb, feNac.getTime(), (esMale ? 1 : 0) , rel);
+		if(id >= 0)
+			personas.put((int) id, new Persona((int) id, nomb, feNac, esMale, rel));
 		return (int) id;
 	}
 
@@ -99,6 +139,24 @@ public class HApper
 		al.setFechaLanzamiento(fechaLan);
 		sqliteHelper.updateAlarma(id, nomb, desc, fechaLan.getTime());
 	}
+	
+	/**
+	 * Metodo encargado de modificar una persona
+	 * @param id de la persona a modificar
+	 * @param nomb Nombre de la persona
+	 * @param feNac Fecha de nacimiento de la persona
+	 * @param esMale Genero de la persona, true si es masculino
+	 * @param rel relacion con el usuario
+	 */
+	public void modificarPersona(int id, String nomb, Date feNac, boolean esMale, String rel) 
+	{
+		Persona p = personas.get(id);
+		p.setNombre(nomb);
+		p.setFechaNacimiento(feNac);
+		p.setGenero(esMale);
+		p.setRelacion(rel);
+		sqliteHelper.updatePersona(id, nomb, feNac.getTime(), (esMale ? 1 : 0), rel);
+	}
 
 	/**
 	 * Metodo que elimina una alarma
@@ -108,6 +166,16 @@ public class HApper
 	{
 		sqliteHelper.deleteAlarma(id);
 		alarmas.remove(id);
+	}
+	
+	/**
+	 * Metodo que elimina una persona
+	 * @param id de la persona a eliminar
+	 */
+	public void eliminarPerosna(int id) 
+	{
+		sqliteHelper.deletePersona(id);
+		personas.remove(id);
 	}
 	
 	/**

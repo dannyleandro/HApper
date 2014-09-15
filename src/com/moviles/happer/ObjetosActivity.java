@@ -4,19 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class ConfiguracionJuegoActivity extends Activity {
+public class ObjetosActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_configuracion_juego);
+		setContentView(R.layout.activity_objetos);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.configuracion_juego, menu);
+		getMenuInflater().inflate(R.menu.objetos, menu);
 		return true;
 	}
 
@@ -30,5 +31,14 @@ public class ConfiguracionJuegoActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	/**
+	 * Lanza la actividad encargada de agregar un objeto
+	 * @param v
+	 */
+	public void agregarObjeto(View v)
+	{
+		//TODO
 	}
 }

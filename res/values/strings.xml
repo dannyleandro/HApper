@@ -36,20 +36,27 @@
     <string name="btn_Establecer">Establecer</string>
     <string name="btn_Empezar">Empezar</string>
     <string name="btn_Agregar_Pregunta">Agregar Pregunta</string>
-    <string name="btn_Configuracion">Configuración</string>
+    <string name="btn_Personas">Personas</string>
     <string name="title_activity_preguntas">Game!</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_agregar_pregunta">Agregar Pregunta</string>
     <string name="title_activity_configuracion_juego">Configuración</string>
     <string name="lbl_Titulo">Titulo</string>
-    <string name="btn_agregar_personas">Agregar Personas</string>
-    <string name="btn_agregar_lugares">Agregar Lugares</string>
-    <string name="btn_agregar_objetos">Agregar Objetos</string>
+    <string name="btn_agregar_persona">Agregar Persona</string>
+    <string name="btn_agregar_lugar">Agregar Lugar</string>
+    <string name="btn_agregar_objeto">Agregar Objeto</string>
     <string name="btn_ver_preguntas">Preguntas Agregadas</string>
     <string name="lbl_Lista_Juego">Datos agregados</string>
     <string name="lbl_pregunta">Enunciado:</string>
     <string name="lbl_Respuesta_Correcta">Respuesta correcta:</string>
     <string name="lbl_Alternativa">Altenativa:</string>
-    
+    <string name="btn_Lugares">Lugares</string>
+    <string name="btn_Objetos">Objetos</string>
+    <string name="title_activity_personas">Personas</string>
+    <string name="title_activity_lugares">Lugares</string>
+    <string name="title_activity_objetos">Objetos</string>
+    <string name="lbl_Objetos">Objetos</string>
+    <string name="lbl_Lugares">Lugares</string>
+    <string name="lbl_Personas">Personas</string>
 
 </resources>

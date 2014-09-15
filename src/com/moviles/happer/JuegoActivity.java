@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.moviles.mundo.HApper;
 
@@ -49,7 +50,6 @@ public class JuegoActivity extends ActionBarActivity
 	 */
 	public void verPreguntas(View v)
 	{
-		System.out.println(instancia);
 		Intent intent = new Intent(getApplicationContext(), PreguntasActivity.class);
 		startActivity(intent);
 	}
@@ -65,13 +65,30 @@ public class JuegoActivity extends ActionBarActivity
 	}
 	
 	/**
-	 * Muestra la actividad de configuracion
+	 * Muestra la actividad de las personas
 	 * @param v
 	 */
-	public void verConfiguraciones(View v)
+	public void verPersonas(View v)
 	{
-		Intent intent = new Intent(getApplicationContext(), ConfiguracionJuegoActivity.class);
+		Intent intent = new Intent(getApplicationContext(), PersonasActivity.class);
 		startActivity(intent);
 	}
 	
+	/**
+	 * Muestra la actividad de los lugares
+	 * @param v
+	 */
+	public void verLugares (View v)
+	{
+		Toast.makeText(getApplicationContext(), "Aplicacion en construccion, disculpe las molestias", Toast.LENGTH_LONG).show();
+	}
+	
+	/**
+	 * Muestra la actividad de las objetos
+	 * @param v
+	 */
+	public void verObjetos(View v)
+	{
+		Toast.makeText(getApplicationContext(), "Aplicacion en construccion, disculpe las molestias", Toast.LENGTH_LONG).show();
+	}
 }
