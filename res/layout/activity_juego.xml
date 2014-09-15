@@ -9,5 +9,32 @@
     android:paddingRight="10dp"
     android:paddingTop="10dp"
     tools:context="com.moviles.happer.JuegoActivity" >
-   
+
+    <Button
+        android:id="@+id/btn_Empezar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/btn_Empezar"
+        android:textSize="35sp" 
+        android:onClick="verPreguntas"/>
+
+    <Button
+        android:id="@+id/btn_AgregarPregunta"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/btn_Agregar_Pregunta"
+        android:textSize="35sp" 
+        android:onClick="verAgregarPregunta"/>
+
+    <Button
+        android:id="@+id/btn_Confguracion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/btn_Configuracion"
+        android:textSize="35sp" 
+        android:onClick="verConfiguraciones"/>
+    
  </LinearLayout>

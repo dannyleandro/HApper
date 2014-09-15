@@ -8,7 +8,6 @@
     <string name="btn_ajustes">Ajustes</string>
     <string name="title_activity_ajustes">Ajustes</string>
     <string name="btn_ajustes_alarma">Ajustes de la Alarma</string>
-    
     <string name="btn_ayuda">Ayuda</string>
 
     <!-- Informacion relativa a el juego -->
@@ -30,12 +29,27 @@
     <string name="btn_Aceptar">Aceptar</string>
     <string name="btn_Cancelar">Cancelar</string>
     <string name="title_activity_detalle_alarma">Detalle Alarma</string>
-    <string name="hello_world">Hello world!</string>
     <string name="lbl_Fecha_Creacion">Fecha de creación:</string>
     <string name="btn_Modificar">Modificar</string>
     <string name="btn_Eliminar">Eliminar</string>
-    <string name="title_activity_modificar_alarma">ModificarAlarmaActivity</string>
+    <string name="title_activity_modificar_alarma">Modificar Alarma</string>
     <string name="btn_Establecer">Establecer</string>
- 
+    <string name="btn_Empezar">Empezar</string>
+    <string name="btn_Agregar_Pregunta">Agregar Pregunta</string>
+    <string name="btn_Configuracion">Configuración</string>
+    <string name="title_activity_preguntas">Game!</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_agregar_pregunta">Agregar Pregunta</string>
+    <string name="title_activity_configuracion_juego">Configuración</string>
+    <string name="lbl_Titulo">Titulo</string>
+    <string name="btn_agregar_personas">Agregar Personas</string>
+    <string name="btn_agregar_lugares">Agregar Lugares</string>
+    <string name="btn_agregar_objetos">Agregar Objetos</string>
+    <string name="btn_ver_preguntas">Preguntas Agregadas</string>
+    <string name="lbl_Lista_Juego">Datos agregados</string>
+    <string name="lbl_pregunta">Enunciado:</string>
+    <string name="lbl_Respuesta_Correcta">Respuesta correcta:</string>
+    <string name="lbl_Alternativa">Altenativa:</string>
+    
 
 </resources>

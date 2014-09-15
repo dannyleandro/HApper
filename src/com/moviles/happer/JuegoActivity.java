@@ -1,19 +1,27 @@
 package com.moviles.happer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-// TODO SE ENCUENTRA VACIO, SE DEJAN LOS METODOS VACIOS PARA UN FUTURO
+import com.moviles.mundo.HApper;
+
 public class JuegoActivity extends ActionBarActivity 
 {
-	//private HApper instancia;
-
+	/**
+	 * Atributo que modela la instancia del mundo
+	 */
+	private HApper instancia;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
-
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_juego);
+		instancia = HApper.darInstancia(getApplicationContext()); 
 	}
 
 	@Override
@@ -35,5 +43,35 @@ public class JuegoActivity extends ActionBarActivity
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * Muestra la actividad de las preguntas
+	 * @param v
+	 */
+	public void verPreguntas(View v)
+	{
+		System.out.println(instancia);
+		Intent intent = new Intent(getApplicationContext(), PreguntasActivity.class);
+		startActivity(intent);
+	}
+	
+	/**
+	 * Muestra la actividad de agregar una pregunta
+	 * @param v
+	 */
+	public void verAgregarPregunta(View v)
+	{
+		Intent intent = new Intent(getApplicationContext(), AgregarPreguntaActivity.class);
+		startActivity(intent);
+	}
+	
+	/**
+	 * Muestra la actividad de configuracion
+	 * @param v
+	 */
+	public void verConfiguraciones(View v)
+	{
+		Intent intent = new Intent(getApplicationContext(), ConfiguracionJuegoActivity.class);
+		startActivity(intent);
+	}
 	
 }
