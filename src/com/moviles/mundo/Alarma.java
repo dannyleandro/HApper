@@ -123,6 +123,6 @@ public class Alarma
 	public String toString() 
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-		return nombre + "\n" + sdf.format(fechaLanzamiento) + "\n " + descripcion;
+		return nombre + "\n \n" + sdf.format(fechaLanzamiento) + "\n \n" + descripcion;
 	}
 }

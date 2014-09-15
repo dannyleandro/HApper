@@ -1,6 +1,9 @@
 package com.moviles.mundo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.annotation.SuppressLint;
 
 public class Persona 
 {
@@ -29,6 +32,14 @@ public class Persona
 	 */
 	private String relacion;
 	
+	/**
+	 * Constructor de la persona
+	 * @param ident id de la persona
+	 * @param nomb Nombre de la persona	
+	 * @param feNac Fecha de nacimiento de la persona
+	 * @param esMale Genero de la persona, true si es masculino
+	 * @param rel
+	 */
 	public Persona(int ident, String nomb, Date feNac, boolean esMale, String rel) 
 	{
 		id = ident;
@@ -83,5 +94,11 @@ public class Persona
 		this.relacion = relacion;
 	}
 	
-	
+	@SuppressLint("SimpleDateFormat") 
+	@Override 
+	public String toString() 
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+		return nombre + "\n" + sdf.format(fechaNacimiento) + "\n " + relacion;
+	}	
 }
