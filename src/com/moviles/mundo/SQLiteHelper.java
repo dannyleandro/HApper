@@ -15,7 +15,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
     /**
      * Version de la base de datos
      */	
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     
     /**
      * Nombre de la base de datos

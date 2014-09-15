@@ -61,5 +61,6 @@
     <string name="lbl_Objetos">Objetos</string>
     <string name="lbl_Lugares">Lugares</string>
     <string name="lbl_Personas">Personas</string>
+    <string name="title_activity_detalle_persona">DetallePersonaActivity</string>
 
 </resources>
