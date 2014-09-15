@@ -11,30 +11,48 @@
     tools:context="com.moviles.happer.JuegoActivity" >
 
     <Button
-        android:id="@+id/btn_Empezar"
+        android:id="@+id/btnEmpezar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
+        android:onClick="verPreguntas"
         android:text="@string/btn_Empezar"
-        android:textSize="35sp" 
-        android:onClick="verPreguntas"/>
+        android:textSize="25sp" />
 
     <Button
-        android:id="@+id/btn_AgregarPregunta"
+        android:id="@+id/btnAgregarPregunta"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
+        android:onClick="verAgregarPregunta"
         android:text="@string/btn_Agregar_Pregunta"
-        android:textSize="35sp" 
-        android:onClick="verAgregarPregunta"/>
+        android:textSize="25sp" />
 
     <Button
-        android:id="@+id/btn_Confguracion"
+        android:id="@+id/btnPersonas"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/btn_Configuracion"
-        android:textSize="35sp" 
-        android:onClick="verConfiguraciones"/>
+        android:layout_marginTop="20dp"
+        android:onClick="verPersonas"
+        android:text="@string/btn_Personas"
+        android:textSize="25sp" />
+    
+        <Button
+            android:id="@+id/btnLugares"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:onClick="verLugares"
+            android:text="@string/btn_Lugares"
+            android:textSize="25sp" />
+        
+            <Button
+                android:id="@+id/btnObjetos"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:onClick="verObjetos"
+                android:text="@string/btn_Objetos"
+                android:textSize="25sp" />
     
  </LinearLayout>

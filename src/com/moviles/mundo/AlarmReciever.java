@@ -16,8 +16,7 @@ public class AlarmReciever extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Toast.makeText(context, "La alarma se activó", Toast.LENGTH_LONG)
-				.show();
+		Toast.makeText(context, "La alarma se activó", Toast.LENGTH_LONG).show();
 
 		// Lanza la actividad correspondiente
 		int idAlarma = intent.getIntExtra("idAlarma", -1);

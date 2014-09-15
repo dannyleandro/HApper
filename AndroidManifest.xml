@@ -115,6 +115,30 @@
         <activity
             android:name=".AjustesActivity"
             android:label="@string/title_activity_ajustes" >
+=======
+            android:name=".PersonasActivity"
+            android:label="@string/title_activity_personas"
+            android:parentActivityName=".JuegoActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.JuegoActivity" />
+        </activity>
+        <activity
+            android:name=".LugaresActivity"
+            android:label="@string/title_activity_lugares"
+            android:parentActivityName=".JuegoActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.JuegoActivity" />
+        </activity>
+        <activity
+            android:name=".ObjetosActivity"
+            android:label="@string/title_activity_objetos"
+            android:parentActivityName=".JuegoActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.JuegoActivity" />
+>>>>>>> 31d5a0a9b6b87621088d8fcc70837ab85e1435ab
         </activity>
     </application>
 
