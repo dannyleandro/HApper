@@ -1,0 +1,13 @@
+¿En qué año nació su hijo?;1985;1995;1989;1993;2
+¿En qué año nació ud?;1920;1930;1910;1940;1
+¿Dónde nació su hijo?;Bogotá;Cali;Cartagena;Medellín;0
+¿Qué relación tienes con Andrés Camilo Cifuentes Pérez?;Familiar;Amigo;Conocido;Desconocido;0
+¿Qué relación tienes con Laura Pamela García Pérez?;Amigo;Desconocido;Conocido;Familiar;3
+¿En qué barrio vives actualmente?;Salitre;Chapinero;Cedritos;Aguas;3
+¿En qué año nació Mayerli Paula García Melendez?;2001;2000;1998;2005;1
+**Fin preguntas**
+
+
+
+
+
