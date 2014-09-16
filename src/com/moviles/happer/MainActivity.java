@@ -94,7 +94,7 @@ public class MainActivity extends ActionBarActivity {
     {
      	new AlertDialog.Builder(this)
         .setTitle("Emergencia!!!")
-        .setMessage("Se enviara un mensaje autom�tico a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
+        .setMessage("Se enviara un mensaje automatico a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) { 
                 enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());

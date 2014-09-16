@@ -63,7 +63,7 @@ public class HApper
 		alarmas = sqliteHelper.getAllAlarmas();
 		personas = sqliteHelper.getAllPersona();
 		preguntas = new ArrayList<Pregunta>();
-		bP = new BotonPanico("Danny", "5556","Ha ocurrido una emergencia");
+		bP = new BotonPanico("Hijo", "3138176004","Ha ocurrido una emergencia!");
 		try 
 		{			  
 			BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("preguntas.txt")));
@@ -148,8 +148,14 @@ public class HApper
 	 * @param rel relacion con el usuario
 	 * @return int id de la persona
 	 */
+	@SuppressWarnings("deprecation")
 	public int agregarPersona(String nomb, Date feNac, boolean esMale, String rel)
 	{
+		agregarPregunta("¿En qué día cumple años " + nomb +  "?", "" + (feNac.getDate() + 1), "" + (feNac.getDate() - 1), "" + (feNac.getDate() - 2), "" + feNac.getDate(), '3');
+		agregarPregunta("¿En qué año cumple " + nomb +  "?", "" + (feNac.getYear() + 1900), "" + (feNac.getYear() + 1899), "" + (feNac.getYear() +1901), "" + (feNac.getYear()+1902), '0');
+		agregarPregunta("¿En qué mes cumple " + nomb +  "?", "" + (feNac.getMonth() + 1), "" + (feNac.getMonth() + 2), "" + (feNac.getMonth()), "" + (feNac.getMonth() + 3), '2');
+		agregarPregunta("¿Qué relación tiene con " + nomb +  "?", "Amigo", rel, "Desconocido", "Conocido", '1');
+		
 		long id = sqliteHelper.addPersona(nomb, feNac.getTime(), (esMale ? 1 : 0) , rel);
 		if(id >= 0)
 			personas.put((int) id, new Persona((int) id, nomb, feNac, esMale, rel));

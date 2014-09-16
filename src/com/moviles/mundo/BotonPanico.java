@@ -28,7 +28,7 @@ public class BotonPanico
 	 * @param nMensajeAEnviar mensaje a encviar al contacto
 	 * @param nNombreContacto nombre del contacto
 	 */
-	public BotonPanico( String nNombreContacto,String nTelefonoContacto, String nMensajeAEnviar) 
+	public BotonPanico( String nNombreContacto, String nTelefonoContacto, String nMensajeAEnviar) 
 	{
 		telefonoContacto = nTelefonoContacto;
 		mensajeAEnviar = nMensajeAEnviar;

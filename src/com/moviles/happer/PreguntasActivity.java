@@ -3,6 +3,7 @@ package com.moviles.happer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -100,7 +101,7 @@ public class PreguntasActivity extends Activity
 		}
 		else
 		{
-			showDialog("Respuesta incorrecta", "Imbécil!!!!! Ud no sabe nada");
+			showDialog("Respuesta incorrecta", "No has respondido correctamente.");
 		}
 	}
 	/**
@@ -115,7 +116,7 @@ public class PreguntasActivity extends Activity
 		}
 		else
 		{
-			showDialog("Respuesta incorrecta", "Imbécil!!!!! Ud no sabe nada");
+			showDialog("Respuesta incorrecta", "No has respondido correctamente.");
 		}
 	}
 	/**
@@ -126,11 +127,11 @@ public class PreguntasActivity extends Activity
 	{
 		if(Character.getNumericValue(pregunta.getCorrecta()) == 2)
 		{
-			showDialog("Respuesta correcta", "Muy bien! has acertado en la respuesta");
+			showDialog("Respuesta correcta", "Muy bien! has acertado en la respuesta.");
 		}
 		else
 		{
-			showDialog("Respuesta incorrecta", "Imbécil!!!!! Ud no sabe nada");
+			showDialog("Respuesta incorrecta", "No has respondido correctamente.");
 		}
 	}
 	/**
@@ -145,7 +146,7 @@ public class PreguntasActivity extends Activity
 		}
 		else
 		{
-			showDialog("Respuesta incorrecta", "Imbécil!!!!! Ud no sabe nada");
+			showDialog("Respuesta incorrecta", "No has respondido correctamente.");
 		}
 	}
 	
@@ -162,8 +163,10 @@ public class PreguntasActivity extends Activity
 		alertDialog.setMessage(message);
 		alertDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() 
 		{
-			public void onClick(DialogInterface dialog,int id) {
-				
+			public void onClick(DialogInterface dialog,int id) 
+			{
+				Intent intent = new Intent(getApplicationContext(), PreguntasActivity.class);
+				startActivity(intent);
 			}
 		});
 		AlertDialog dialog= alertDialog.create();
