@@ -32,6 +32,14 @@ public class Persona
 	 */
 	private String relacion;
 	
+	/**
+	 * Constructor de la persona
+	 * @param ident id de la persona
+	 * @param nomb Nombre de la persona	
+	 * @param feNac Fecha de nacimiento de la persona
+	 * @param esMale Genero de la persona, true si es masculino
+	 * @param rel
+	 */
 	public Persona(int ident, String nomb, Date feNac, boolean esMale, String rel) 
 	{
 		id = ident;
@@ -91,6 +99,7 @@ public class Persona
 	public String toString() 
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+<<<<<<< HEAD
 		return nombre + "\n " + relacion + "\n" + sdf.format(fechaNacimiento) ;
 	}
 	
