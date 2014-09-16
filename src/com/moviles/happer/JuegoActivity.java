@@ -8,21 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.moviles.mundo.HApper;
-
 public class JuegoActivity extends ActionBarActivity 
 {
-	/**
-	 * Atributo que modela la instancia del mundo
-	 */
-	private HApper instancia;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_juego);
-		instancia = HApper.darInstancia(getApplicationContext()); 
 	}
 
 	@Override

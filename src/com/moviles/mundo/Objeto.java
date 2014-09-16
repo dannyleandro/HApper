@@ -1,10 +1,9 @@
 package com.moviles.mundo;
 
-import java.util.Date;
 
 public class Objeto 
 {
-	private int id;
+	/*private int id;
 	
 	private String nombre;
 	
@@ -15,5 +14,5 @@ public class Objeto
 	public Objeto() 
 	{
 	
-	}
+	}*/
 }

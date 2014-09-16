@@ -1,7 +1,11 @@
 package com.moviles.mundo;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Random;
 
 import android.content.Context;
 
@@ -21,6 +25,11 @@ public class HApper
 	 * Estructura de datos con las personas
 	 */
 	private Hashtable<Integer, Persona> personas;
+	
+	/**
+	 * Estructura de datos con las preguntas
+	 */
+	private ArrayList<Pregunta> preguntas;
 	
 	/**
 	 * 
@@ -53,7 +62,29 @@ public class HApper
 		sqliteHelper = new SQLiteHelper(context);
 		alarmas = sqliteHelper.getAllAlarmas();
 		personas = sqliteHelper.getAllPersona();
+		preguntas = new ArrayList<Pregunta>();
 		bP = new BotonPanico("Danny", "5556","Ha ocurrido una emergencia");
+		try 
+		{			  
+			BufferedReader br = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("preguntas.txt")));
+			String linea = br.readLine();
+			while( !linea.equals("**Fin preguntas**") )
+			{
+				String enunc = linea.split(";")[0];
+				String opc1 = linea.split(";")[1];
+				String opc2 = linea.split(";")[2];
+				String opc3 = linea.split(";")[3];
+				String opc4 = linea.split(";")[4];
+				char resp = linea.split(";")[5].charAt(0);
+				agregarPregunta(enunc, opc1, opc2, opc3, opc4, resp);
+				linea = br.readLine();
+			}
+			br.close();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -123,6 +154,31 @@ public class HApper
 		if(id >= 0)
 			personas.put((int) id, new Persona((int) id, nomb, feNac, esMale, rel));
 		return (int) id;
+	}
+	
+	/**
+	 * Devuelve de manera aleatoria una pregunta
+	 * @return
+	 */
+	public Pregunta darSiguientePregunta()
+	{
+		Random rand = new Random();
+		int randomNum = rand.nextInt(preguntas.size());
+		return preguntas.get(randomNum);
+	}
+	
+	/**
+	 * Agrega una nueva pregunta
+	 * @param enun
+	 * @param opc1
+	 * @param opc2
+	 * @param opc3
+	 * @param opc4
+	 * @param resp
+	 */
+	public void agregarPregunta(String enun, String opc1, String opc2, String opc3, String opc4, char resp)
+	{
+		preguntas.add(new Pregunta(enun, opc1, opc2, opc3, opc4, resp));
 	}
 
 	/**

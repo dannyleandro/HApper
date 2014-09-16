@@ -20,28 +20,32 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/txtOpcion1"
+        android:id="@+id/btnOpcion1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="90dp" />
+        android:layout_marginTop="90dp" 
+        android:onClick="opcion1"/>
 
     <Button
-        android:id="@+id/txtOpcion2"
+        android:id="@+id/btnOpcion2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:onClick="opcion2"/>
 
     <Button
-        android:id="@+id/txtOpcion3"
+        android:id="@+id/btnOpcion3"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:onClick="opcion3"/>
 
     <Button
-        android:id="@+id/txtOpcion4"
+        android:id="@+id/btnOpcion4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp" 
+        android:onClick="opcion4"/>
 
 </LinearLayout>
