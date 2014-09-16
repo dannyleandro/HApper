@@ -99,8 +99,8 @@ public class Persona
 	public String toString() 
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-<<<<<<< HEAD
 		return nombre + "\n " + relacion + "\n" + sdf.format(fechaNacimiento) ;
-	}
-	
+
+	}	
+
 }
