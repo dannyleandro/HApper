@@ -159,6 +159,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.PersonasActivity" />
         </activity>
+        <activity
+            android:name=".ModificarPersonaActivity"
+            android:label="@string/title_activity_modificar_persona"
+            android:parentActivityName=".DetallePersonaActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.DetallePersonaActivity" />
+        </activity>
     </application>
 
 </manifest>
