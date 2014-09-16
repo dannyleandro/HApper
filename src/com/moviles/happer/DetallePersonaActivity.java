@@ -124,7 +124,7 @@ public class DetallePersonaActivity extends Activity
 	 */
 	public void modificarPersona(View v)
 	{
-		Intent intent = new Intent(getApplicationContext(), ModificarAlarmaActivity.class);
+		Intent intent = new Intent(getApplicationContext(), ModificarPersonaActivity.class);
 		intent.putExtra("idPersona", idPersona);
 		startActivity(intent);
 	}
