@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:scrollbars="none"
     tools:context="com.moviles.happer.DetallePersonaActivity" >
-<!--  
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -34,7 +34,7 @@
             android:layout_height="fill_parent"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="@string/lbl_Nombre_Persona"
+            android:text="@string/lbl_Nombre"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/darker_gray" />
     
@@ -42,47 +42,37 @@
             android:id="@+id/textView2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="@string/lbl_Descripcion"
+            android:text="@string/lbl_Relacion"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/lblDescripcion_Persona"
+            android:id="@+id/lblRelacion"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="@string/lbl_Descripcion_Persona"
+            android:text="@string/lbl_Relacion_Persona"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/darker_gray" />
         
 		<TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="@string/lbl_Fecha_Creacion"
+            android:text="@string/lbl_Fecha_Nacimiento_Persona"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-        
+		
 		<TextView
-		    android:id="@+id/lblFechaNacimiento_Persona"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:paddingBottom="20dp"
-		    android:paddingTop="20dp"
-		    android:text="@string/lbl_Fecha_Nacimiento_Persona"
-		    android:textAppearance="?android:attr/textAppearanceLarge"
-		    android:textColor="@android:color/darker_gray" />
-        
-
-        <TextView
-            android:id="@+id/lblFechaLanzamiento"
+            android:id="@+id/lblFechaNacimiento"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="@string/lbl_Fecha_Lanzamiento"
+            android:text="@string/lbl_Fecha_Nacimiento_Persona"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/darker_gray" />
-        
+		
+  
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,15 +85,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="aceptarDetallePersona"
-                android:text="@string/btn_Aceptar_Persona"
+                android:text="@string/btn_Aceptar"
                 android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btnModificarPersona"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="modificarPersonaa"
-                android:text="@string/btn_Modificar_Persona"
+                android:onClick="modificarPersona"
+                android:text="@string/btn_Modificar"
                 android:textSize="18sp" />
 
             <Button
@@ -111,10 +101,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="eliminarPersona"
-                android:text="@string/btn_Eliminar_Persona"
+                android:text="@string/btn_Eliminar"
                 android:textSize="18sp" />
             
         </LinearLayout>
-	</LinearLayout>
-	-->
+
+    </LinearLayout>
+	
 </ScrollView>

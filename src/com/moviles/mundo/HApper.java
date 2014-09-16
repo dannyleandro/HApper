@@ -173,7 +173,7 @@ public class HApper
 	 * Metodo que elimina una persona
 	 * @param id de la persona a eliminar
 	 */
-	public void eliminarPerosna(int id) 
+	public void eliminarPersona(int id) 
 	{
 		sqliteHelper.deletePersona(id);
 		personas.remove(id);

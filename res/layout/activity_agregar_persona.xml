@@ -10,7 +10,7 @@
     android:scrollbars="none"
     tools:context="com.moviles.happer.AgregarPersonaActivity" >
    
-<LinearLayout
+   <LinearLayout
     android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -63,13 +63,6 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
             android:calendarViewShown="false" />
-    	
-    	<TextView
-            android:id="@+id/textView4"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/lbl_Genero_Persona"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
 
     	
     	

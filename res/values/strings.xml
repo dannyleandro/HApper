@@ -11,7 +11,7 @@
     <string name="btn_juego">Juego Mental</string>
     <string name="title_activity_juego">Juego Mental</string>
     
-    <!-- Informacion relativa a la alarma -->
+    <!-- Informacion relativa a la persona -->
     <string name="lbl_Nombre_Persona">Nombre de la persona</string>
     <string name="lbl_Relacion">Relacion:</string>
     <string name="lbl_Relacion_Persona">Relacion con la persona</string>

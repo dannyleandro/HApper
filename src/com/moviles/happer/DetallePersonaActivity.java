@@ -1,12 +1,21 @@
 package com.moviles.happer;
 
+import java.text.SimpleDateFormat;
+
 import com.moviles.mundo.HApper;
+import com.moviles.mundo.Persona;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetallePersonaActivity extends Activity 
 {
@@ -46,10 +55,38 @@ public class DetallePersonaActivity extends Activity
 	 */
 	private TextView rel;
 	
+	/**
+	 * Atributo que modela el campo que muestra la fecha de lanzamiento de la persona
+	 */
+	private TextView fecha;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_persona);
+		instancia = HApper.darInstancia(getApplicationContext());
+		
+		Intent intent = getIntent();
+		idPersona = intent.getIntExtra("idPersona", -1);
+		
+		Persona p = instancia.darPersona(idPersona);
+		
+		if(p == null)
+		{	
+			Toast.makeText(getApplicationContext(), "Ocurrió un problema, la persona no se encuentra", Toast.LENGTH_LONG).show();
+			finish( );
+		}
+		else
+		{
+			nomb = (TextView) findViewById(R.id.lblNombrePersona);
+			nomb.setText(p.getNombre());
+			desc = (TextView) findViewById(R.id.lblRelacion);
+			desc.setText(p.getRelacion());
+			fechaNacimiento = (TextView) findViewById(R.id.lblFechaNacimiento);
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+			fecha = (TextView) findViewById(R.id.lblFechaNacimiento);
+			fecha.setText(sdf.format(p.getFechaNacimiento()));
+		}
 	}
 
 	@Override
@@ -69,5 +106,54 @@ public class DetallePersonaActivity extends Activity
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	/**
+	 * Metodo encargado de manejar el botón aceptar en la vista de detalle de la persona
+	 * @param v View
+	 */
+	public void aceptarDetallePersona(View v)
+	{
+		Intent intent = new Intent(getApplicationContext(), PersonasActivity.class);
+		startActivity(intent);
+	}
+	
+	/**
+	 * Metodo encargado de mostrar la ventana para modificar la alarma
+	 * @param v View
+	 */
+	public void modificarPersona(View v)
+	{
+		Intent intent = new Intent(getApplicationContext(), ModificarAlarmaActivity.class);
+		intent.putExtra("idPersona", idPersona);
+		startActivity(intent);
+	}
+	
+	@Override
+	public void onBackPressed() 
+	{
+	   Log.d("CDA", "onBackPressed Called");
+	   Intent intent = new Intent(getApplicationContext(), AlarmasActivity.class);
+		startActivity(intent);
+	}
+	
+	public void eliminarPersona(View v)
+	{
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		alertDialog.setTitle("Eliminar Persona");
+		alertDialog.setCancelable(false);
+		alertDialog.setMessage("Est� seguro que desea eliminar la persona?");
+		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		alertDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog,int id) 
+			{
+				instancia.eliminarPersona(idPersona);
+				DetallePersonaActivity.this.finish();
+			}
+		});
+		alertDialog.setNegativeButton(android.R.string.no, null);
+		AlertDialog dialog = alertDialog.create();
+		dialog.show();
 	}
 }
