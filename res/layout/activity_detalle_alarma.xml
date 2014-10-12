@@ -55,6 +55,21 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@android:color/darker_gray" />
         
+        <TextView
+            android:id="@+id/txtImagen"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/lbl_Imagen"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <ImageView
+            android:id="@+id/imgAlarma"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:src="@drawable/abc_ab_stacked_solid_light_holo" 
+            android:contentDescription="@string/cd_Imagen" />
+        
 		<TextView
             android:id="@+id/textView5"
             android:layout_width="fill_parent"

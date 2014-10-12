@@ -66,7 +66,6 @@ public class AlarmasActivity extends ActionBarActivity
 	@Override
 	protected void onResume() 
 	{
-		
 		super.onResume();
 		
 		ArrayList<Alarma> alarmas = new ArrayList<Alarma>(instancia.darAlarmas().values());
@@ -94,7 +93,8 @@ public class AlarmasActivity extends ActionBarActivity
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

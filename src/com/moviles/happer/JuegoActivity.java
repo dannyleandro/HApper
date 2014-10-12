@@ -21,7 +21,8 @@ public class JuegoActivity extends ActionBarActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
-
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 	
@@ -32,7 +33,8 @@ public class JuegoActivity extends ActionBarActivity
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

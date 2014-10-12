@@ -4,13 +4,14 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="21" />
-
+    
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -108,11 +109,6 @@
                 android:value="com.moviles.MainActivity" />
         </activity>
         <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
-        <activity
             android:name=".AjustesActivity"
             android:label="@string/title_activity_ajustes" >
             <meta-data
@@ -166,6 +162,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.moviles.happer.DetallePersonaActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moviles.happer.MainActivity" />
         </activity>
     </application>
 

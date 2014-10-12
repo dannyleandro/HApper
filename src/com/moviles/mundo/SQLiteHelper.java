@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.util.Log;
 
 public class SQLiteHelper extends SQLiteOpenHelper
@@ -37,9 +38,8 @@ public class SQLiteHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db) 
 	{
-		String crearTablaAlarmas = "CREATE TABLE alarmas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fechaLanzamiento INTEGER, fechaCreacion INTEGER)";
+		String crearTablaAlarmas = "CREATE TABLE alarmas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, fechaLanzamiento INTEGER, fechaCreacion INTEGER, imagenUri TEXT)";
 		String crearTablaPersonas = "CREATE TABLE personas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, fechaNacimiento INTEGER, genero INTEGER, relacion TEXT)";
- 
         db.execSQL(crearTablaAlarmas);
         db.execSQL(crearTablaPersonas);
 	}
@@ -60,14 +60,15 @@ public class SQLiteHelper extends SQLiteOpenHelper
     private static final String KEY_DESCRIPCION = "descripcion";
     private static final String KEY_FECHA_LANZAMIENTO = "fechaLanzamiento";
     private static final String KEY_FECHA_CREACION = "fechaCreacion";
- 
+    private static final String KEY_IMAGEN_URI = "imagenUri";
+    
     private static final String KEY_FECHA_NACIMINIENTO = "fechaNacimiento";
     private static final String KEY_GENERO = "genero";
     private static final String KEY_RELACION = "relacion";
     
     private static final String[] COLUMNS = {KEY_ID, KEY_NOMBRE, KEY_DESCRIPCION, KEY_FECHA_LANZAMIENTO, KEY_FECHA_CREACION};
  
-    public long addAlarma(String nomb, String desc, long fecLan, long fecCre)
+    public long addAlarma(String nomb, String desc, long fecLan, long fecCre, String imagenUri)
     {
     	Log.d("addAlarma", "Se inserta una nueva fila con los campos Nombre:" + nomb + " Descripcion:" + desc + " FechaLanzamiento:" + fecLan + " FechaCreacion:" + fecCre);
  
@@ -78,6 +79,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
         values.put(KEY_DESCRIPCION, desc);
         values.put(KEY_FECHA_LANZAMIENTO, fecLan);
         values.put(KEY_FECHA_CREACION, fecCre);
+        values.put(KEY_IMAGEN_URI, imagenUri);
         
         Long id = db.insert(TABLA_ALARMAS, null, values); // key/value -> keys = column names/ values = column values
  
@@ -123,7 +125,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
             cursor.moveToFirst();
  
         // 4. build Alarma object
-        Alarma alarma = new Alarma(id, cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)));
+        Alarma alarma = new Alarma(id, cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)), Uri.parse(cursor.getString(5)));
         db.close();
 
         Log.d("getAlarma("+id+")", "Se obtiene la fila con los campos id:" + id + " Nombre:" + alarma.getNombre() + " Descripcion:" + alarma.getDescripcion() + " FechaLanzamiento:" + alarma.getFechaLanzamiento().toString() + " FechaCreacion:" + alarma.getFechaCreacion().toString());
@@ -160,7 +162,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
         return persona;
     }
  
-    public void updateAlarma(int id, String nomb, String desc, long fecLan) 
+    public void updateAlarma(int id, String nomb, String desc, long fecLan, String imagenUri) 
     {
     	Log.d("updateAlarma("+id+")", " Se actualiza la fila con los campos  id:" + id + " Nombre:" + nomb + " Descripcion:" + desc + " FechaLanzamiento:" + fecLan);
     	
@@ -172,6 +174,7 @@ public class SQLiteHelper extends SQLiteOpenHelper
         values.put(KEY_NOMBRE, nomb);
         values.put(KEY_DESCRIPCION, desc);
         values.put(KEY_FECHA_LANZAMIENTO, fecLan);
+        values.put(KEY_IMAGEN_URI, imagenUri);
         
         // 3. updating row
         db.update(TABLA_ALARMAS, values, "id = ? ", new String[] { Integer.toString(id) } );
@@ -233,28 +236,23 @@ public class SQLiteHelper extends SQLiteOpenHelper
     {
     	Hashtable<Integer, Alarma> alarmas = new Hashtable<Integer, Alarma>();
   
-        // 1. build the query
         String query = "SELECT  * FROM " + TABLA_ALARMAS;
   
-        // 2. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
   
-        // 3. go over each row, build book and add it to list
         Alarma al = null;
         if (cursor.moveToFirst()) 
         {
             do 
             {
-                al = new Alarma(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)));
+                al = new Alarma(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), new Date(cursor.getLong(3)), new Date(cursor.getLong(4)), Uri.parse(cursor.getString(5)));
                 alarmas.put(al.getId(), al);
             } 
             while (cursor.moveToNext());
         }
   
         Log.d("getAllAlarmas()", alarmas.toString());
-  
-        // return books
         return alarmas;
     }
 
@@ -263,14 +261,11 @@ public class SQLiteHelper extends SQLiteOpenHelper
     {
     	Hashtable<Integer, Persona> personas = new Hashtable<Integer, Persona>();
   
-        // 1. build the query
         String query = "SELECT  * FROM " + TABLA_PERSONAS;
   
-        // 2. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-  
-        // 3. go over each row, build book and add it to list
+ 
         Persona per = null;
         if (cursor.moveToFirst()) 
         {

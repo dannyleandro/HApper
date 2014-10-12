@@ -1,8 +1,10 @@
 package com.moviles.mundo;
 
-import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.annotation.SuppressLint;
+import android.net.Uri;
 
 public class Alarma 
 {
@@ -32,18 +34,25 @@ public class Alarma
 	private String descripcion;
 	
 	/**
+	 * Uri de la imagen asociada a la alarma
+	 */
+	private Uri imagenUri;
+	
+	/**
 	 * Constructor de la alarma
 	 * @param nom nombre de la alarma
 	 * @param desc descripción de la alarma
 	 * @param fechaLan fecha en la que será lanzada la alarma
+	 * @param imgUri Uri de la imagen de la alarma
 	 */
-	public Alarma(int ident, String nom, String desc, Date fechaLan, Date fecCre) 
+	public Alarma(int ident, String nom, String desc, Date fechaLan, Date fecCre, Uri imgUri) 
 	{
 		id = ident;
 		nombre = nom;
 		descripcion = desc;
 		fechaLanzamiento = fechaLan;
 		fechaCreacion = fecCre;
+		imagenUri = imgUri;
 	}
 	
 	/**
@@ -92,6 +101,15 @@ public class Alarma
 	}
 	
 	/**
+	 * Devuelve la uri de la imagen de la alarma
+	 * @return Uri de la imagen
+	 */
+	public Uri getImagenUri() 
+	{
+		return imagenUri;
+	}
+	
+	/**
 	 * Modifica la descripcion de la alarma
 	 * @param descripcion String con la nueva descripción
 	 */
@@ -118,11 +136,20 @@ public class Alarma
 		this.nombre = nombre;
 	}
 	
+	/**
+	 * Modifica la uri de la imagen asociada a la alarma
+	 * @param imagenUri Uri de la nueva imagen
+	 */
+	public void setImagenUri(Uri imagenUri) 
+	{
+		this.imagenUri = imagenUri;
+	}
+	
 	@SuppressLint("SimpleDateFormat") 
 	@Override 
 	public String toString() 
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
-		return nombre + "\n \n" + sdf.format(fechaLanzamiento) + "\n \n" + descripcion;
+		return nombre + "\n" + sdf.format(fechaLanzamiento) + " \n" + descripcion;
 	}
 }

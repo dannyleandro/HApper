@@ -1,6 +1,5 @@
 package com.moviles.happer;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.moviles.mundo.HApper;
@@ -37,10 +35,10 @@ public class ModificarPersonaActivity extends Activity {
 	 */
 	private TextView nomb;
 	
-	/**
-	 * Atributo que modela el DatePicker para ingresar la fecha de nacimiento de la persona
-	 */
-	private TextView fechaNacimiento;
+//	/**
+//	 * Atributo que modela el DatePicker para ingresar la fecha de nacimiento de la persona
+//	 */
+//	private TextView fechaNacimiento;
 	
 	/**
 	 *Atributo que modela la fecha de nacimiento de la persona 
@@ -52,12 +50,13 @@ public class ModificarPersonaActivity extends Activity {
 	 */
 	private TextView rel;
 	
-	/**
-	 *Atributo que modela el genero 
-	 */
-	private boolean gen;
+//	/**
+//	 *Atributo que modela el genero 
+//	 */
+//	private boolean gen;
 	
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
@@ -70,7 +69,7 @@ public class ModificarPersonaActivity extends Activity {
 		Persona p = instancia.darPersona(idPersona);
 		if(p == null)
 		{	
-			Toast.makeText(getApplicationContext(), "Ocurrió un problema, la persona no se puede modificar", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Ocurriï¿½ un problema, la persona no se puede modificar", Toast.LENGTH_LONG).show();
 			finish( );
 		}
 		
@@ -80,7 +79,6 @@ public class ModificarPersonaActivity extends Activity {
 			nomb.setText(p.getNombre());
 			rel = (EditText) findViewById(R.id.txtRelacion);
 			rel.setText(p.getRelacion());
-			fechaNacimiento = (TextView) findViewById(R.id.lblFechaNacimiento);
 			fecha = (DatePicker) findViewById(R.id.dpPersona);
 			fecha.updateDate(p.getFechaNacimiento().getYear() + 1900, p.getFechaNacimiento().getDate(), p.getFechaNacimiento().getDate());
 		}
@@ -100,7 +98,8 @@ public class ModificarPersonaActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -144,7 +143,7 @@ public class ModificarPersonaActivity extends Activity {
 		}
 		else
 		{
-			showDialog("Valores vacíos", "Debe ingresar valores válidos para modificar la persona");
+			showDialog("Valores vacï¿½os", "Debe ingresar valores vï¿½lidos para modificar la persona");
 		}
 	}
 	

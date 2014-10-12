@@ -2,14 +2,8 @@ package com.moviles.happer;
 
 import java.util.Date;
 
-import com.moviles.mundo.AlarmReciever;
-import com.moviles.mundo.HApper;
-
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +13,10 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.moviles.mundo.AlarmReciever;
+import com.moviles.mundo.HApper;
 
 public class AgregarPersonaActivity extends Activity {
 	
@@ -29,11 +25,10 @@ public class AgregarPersonaActivity extends Activity {
 	 */
 	private HApper instancia;
 	
-	/**
-	 * Atributo que modela el id de la persona
-	 */
-	private int idPersona;
-	
+//	/**
+//	 * Atributo que modela el id de la persona
+//	 */
+//	private int idPersona;
 	
 	/**
 	 * Atributo que modela el label para mostrar el nombre de la persona
@@ -84,7 +79,8 @@ public class AgregarPersonaActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

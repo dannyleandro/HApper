@@ -28,6 +28,8 @@
     <string name="lbl_Nombre_Alarma">Nombre de la alarma</string>
     <string name="lbl_Descripcion">Descripción:</string>
     <string name="lbl_Descripcion_Alarma">Descripción de la Alarma</string>
+    <string name="lbl_Imagen">Imagen:</string>
+    <string name="cd_Imagen">Imagen</string>
     <string name="lbl_Fecha_Lanzamiento">Fecha de Ejecución:</string>
     <string name="lbl_Hora">Hora:</string>
     <string name="btn_Aceptar">Aceptar</string>

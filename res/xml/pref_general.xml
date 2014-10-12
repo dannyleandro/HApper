@@ -1,0 +1,78 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <PreferenceCategory android:title="General" >
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefSincronizacion"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Tiempo sincronizacion" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Botón Pánico" >
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefNombreUsuario"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Nombres" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefApellidosUsuario"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Apellidos" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefCelularUsuario"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Celular" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Alarmas" >
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefTiempoAlarma"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Tiempo sonido alarma" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefRingtone"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Sonido alarma" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Juego" >
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefTiempoPregunta"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Tiempo de cada pregunta" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="pref"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Cantidad preguntas" />
+    </PreferenceCategory>
+</PreferenceScreen>

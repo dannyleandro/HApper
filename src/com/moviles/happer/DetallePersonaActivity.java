@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import com.moviles.mundo.HApper;
 import com.moviles.mundo.Persona;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -40,27 +41,27 @@ public class DetallePersonaActivity extends Activity
 	 */
 	private TextView desc;
 	
-	/**
-	 *Atributo que modela el genero de la persona 
-	 */
-	private TextView genero;
-	
-	/**
-	 *Atributo que modela la fecha de nacimiento de la persona 
-	 */
-	private TextView fechaNacimiento;
-	
-	/**
-	 *Atributo que modela la relacion de la persona con el usuario 
-	 */
-	private TextView rel;
+//	/**
+//	 *Atributo que modela el genero de la persona 
+//	 */
+//	private TextView genero;
+//	
+//	/**
+//	 *Atributo que modela la fecha de nacimiento de la persona 
+//	 */
+//	private TextView fechaNacimiento;
+//	
+//	/**
+//	 *Atributo que modela la relacion de la persona con el usuario 
+//	 */
+//	private TextView rel;
 	
 	/**
 	 * Atributo que modela el campo que muestra la fecha de lanzamiento de la persona
 	 */
 	private TextView fecha;
 	
-	@Override
+	@SuppressLint("SimpleDateFormat") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detalle_persona);
@@ -82,7 +83,7 @@ public class DetallePersonaActivity extends Activity
 			nomb.setText(p.getNombre());
 			desc = (TextView) findViewById(R.id.lblRelacion);
 			desc.setText(p.getRelacion());
-			fechaNacimiento = (TextView) findViewById(R.id.lblFechaNacimiento);
+			//fechaNacimiento = (TextView) findViewById(R.id.lblFechaNacimiento);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
 			fecha = (TextView) findViewById(R.id.lblFechaNacimiento);
 			fecha.setText(sdf.format(p.getFechaNacimiento()));
@@ -103,7 +104,8 @@ public class DetallePersonaActivity extends Activity
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -142,7 +144,7 @@ public class DetallePersonaActivity extends Activity
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 		alertDialog.setTitle("Eliminar Persona");
 		alertDialog.setCancelable(false);
-		alertDialog.setMessage("Está seguro que desea eliminar la persona?");
+		alertDialog.setMessage("Estï¿½ seguro que desea eliminar la persona?");
 		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 		alertDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() 
 		{

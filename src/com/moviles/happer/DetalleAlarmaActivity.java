@@ -7,11 +7,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +36,6 @@ public class DetalleAlarmaActivity extends Activity
 	 */
 	private int idAlarma;
 	
-	
 	/**
 	 * Atributo que modela el label para mostrar el nombre de la alarma
 	 */
@@ -40,6 +45,11 @@ public class DetalleAlarmaActivity extends Activity
 	 * Atributo que modela el label para mostrar la descripción de la alarma
 	 */
 	private TextView desc;
+	
+	/**
+	 * Atributo que modela la imagen de la alarma
+	 */
+	private ImageView imagen;
 	
 	/**
 	 * Atributo que modela el campo que muestra la fecha de creacion de la alarma
@@ -80,9 +90,55 @@ public class DetalleAlarmaActivity extends Activity
 			fechaCreacion.setText(sdf.format(a.getFechaCreacion()));
 			fecha = (TextView) findViewById(R.id.lblFechaLanzamiento);
 			fecha.setText(sdf.format(a.getFechaLanzamiento()));
+			imagen = (ImageView) findViewById(R.id.imgAlarma);
+			inicializarImagen(a.getImagenUri());
 		}
 	}
+	
+	/**
+	 * Metodo que construye la imagen a partir de la ruta
+	 */
+	public void inicializarImagen(Uri imgUri)
+	{
+		try 
+		{
+			ExifInterface exif = new ExifInterface(imgUri.getPath());
+			int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+			switch (orientation) 
+			{
+			case ExifInterface.ORIENTATION_ROTATE_90:
+				orientation = 90;
+				break; 
 
+			case ExifInterface.ORIENTATION_ROTATE_180:
+				orientation = 180;
+				break;
+
+			case ExifInterface.ORIENTATION_ROTATE_270:
+				orientation = 270;
+				break;
+			}
+			Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imgUri);
+			Bitmap imageScaled = Bitmap.createScaledBitmap(bitmap, 250, 250 * bitmap.getHeight() / bitmap.getWidth(), false);
+			if (orientation != 0 ) 
+			{
+				Matrix matrix = new Matrix();
+				matrix.postRotate(orientation);
+				Bitmap rotatedScaledImage = Bitmap.createBitmap(imageScaled, 0, 0, imageScaled.getWidth(), imageScaled.getHeight(),	matrix, true);
+				imagen.setImageBitmap(rotatedScaledImage);
+			}
+			else 
+				imagen.setImageBitmap(imageScaled);
+		} 
+		catch (Exception e) 
+		{
+			findViewById(R.id.txtImagen).setVisibility(View.GONE);
+			imagen.setVisibility(View.GONE);
+			e.printStackTrace();
+			Toast.makeText(this, "La alarma no tiene imagen", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -98,7 +154,8 @@ public class DetalleAlarmaActivity extends Activity
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-			return true;
+			Intent i = new Intent(this, SettingsActivity.class);
+			startActivity(i);
 		}
 		return super.onOptionsItemSelected(item);
 	}

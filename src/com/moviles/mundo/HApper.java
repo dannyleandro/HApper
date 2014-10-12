@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.Random;
 
 import android.content.Context;
+import android.net.Uri;
 
 public class HApper 
 {
@@ -130,13 +131,14 @@ public class HApper
 	 * @param nomb Nombre de la alarma
 	 * @param desc Descripcion de la alarma
 	 * @param fecha Fecha de lanzamiento de la alarma incluyendo su hora
+	 * @param imgUri Uri de la imagen asociada a la alarma
 	 */
-	public int agregarAlarma(String nomb, String desc, Date fecha)
+	public int agregarAlarma(String nomb, String desc, Date fecha, Uri imgUri)
 	{
 		Date feCre = new Date();
-		long id = sqliteHelper.addAlarma(nomb, desc, fecha.getTime(), feCre.getTime());
+		long id = sqliteHelper.addAlarma(nomb, desc, fecha.getTime(), feCre.getTime(), imgUri.toString());
 		if(id >= 0)
-			alarmas.put((int) id, new Alarma((int) id, nomb, desc, fecha, feCre));
+			alarmas.put((int) id, new Alarma((int) id, nomb, desc, fecha, feCre, imgUri));
 		return (int) id;
 	}
 	
@@ -193,14 +195,16 @@ public class HApper
 	 * @param desc Descripcion nueva de la alarma
 	 * @param nomb Nombre nuevo de la alarma
 	 * @param fechaLan nueva fecha de lanzamiento
+	 * @param imgUri Uri de la imagen asociada a la alarma
 	 */
-	public void modificarAlarma(int id, String nomb, String desc, Date fechaLan) 
+	public void modificarAlarma(int id, String nomb, String desc, Date fechaLan, Uri imgUri) 
 	{
 		Alarma al = alarmas.get(id);
 		al.setNombre(nomb);
 		al.setDescripcion(desc);
 		al.setFechaLanzamiento(fechaLan);
-		sqliteHelper.updateAlarma(id, nomb, desc, fechaLan.getTime());
+		al.setImagenUri(imgUri);
+		sqliteHelper.updateAlarma(id, nomb, desc, fechaLan.getTime(), imgUri.toString());
 	}
 	
 	/**
