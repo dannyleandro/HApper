@@ -2,9 +2,6 @@ package com.moviles.happer;
 
 import java.text.SimpleDateFormat;
 
-import com.moviles.mundo.HApper;
-import com.moviles.mundo.Persona;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.moviles.mundo.HApper;
+import com.moviles.mundo.Persona;
 
 public class DetallePersonaActivity extends Activity 
 {

@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.moviles.mundo.Alarma;
-import com.moviles.mundo.HApper;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -37,6 +34,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.moviles.mundo.Alarma;
+import com.moviles.mundo.HApper;
 
 public class ModificarAlarmaActivity extends Activity 
 {

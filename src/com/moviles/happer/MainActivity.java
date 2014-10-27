@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.SmsManager;
 import android.view.Menu;
@@ -16,8 +17,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.moviles.mundo.HApper;
-
-
 
 public class MainActivity extends ActionBarActivity {
 
@@ -67,8 +66,7 @@ public class MainActivity extends ActionBarActivity {
 	 */
 	public void verAyuda(View v) 
 	{
-		Intent intent = new Intent(getApplicationContext(), AyudaActivity.class);
-		startActivity(intent);
+		instancia.conectarServidor(getApplicationContext());
 	}
 
 	/**
@@ -152,5 +150,39 @@ public class MainActivity extends ActionBarActivity {
 		dialog.show();	
 	}
 
-
+	/**
+     * Function to show settings alert dialog
+     * */
+    public void showSettingsAlert()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+      
+        // Setting Dialog Title
+        alertDialog.setTitle("GPS is settings");
+  
+        // Setting Dialog Message
+        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+  
+        // Setting Icon to Dialog
+        //alertDialog.setIcon(R.drawable.delete);
+  
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) 
+            {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+  
+        // on pressing cancel button
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+            }
+        });
+        // Showing Alert Message
+        AlertDialog dialog = alertDialog.create();
+		dialog.show();
+    }
 }

@@ -12,8 +12,8 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.widget.Toast;
 
-public class AlarmReciever extends BroadcastReceiver {
-
+public class AlarmReceiver extends BroadcastReceiver 
+{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Toast.makeText(context, "La alarma se activó", Toast.LENGTH_LONG).show();

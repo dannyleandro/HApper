@@ -34,7 +34,7 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.moviles.mundo.AlarmReciever;
+import com.moviles.mundo.AlarmReceiver;
 import com.moviles.mundo.HApper;
 
 public class AgregarAlarmaActivity extends ActionBarActivity 
@@ -240,7 +240,7 @@ public class AgregarAlarmaActivity extends ActionBarActivity
 
 			int id = instancia.agregarAlarma(nomb.getText().toString(), desc.getText().toString(), fechaLanzamiento, imgUri);
 
-			Intent intentAlarm = new Intent(getApplicationContext(), AlarmReciever.class);
+			Intent intentAlarm = new Intent(getApplicationContext(), AlarmReceiver.class);
 			intentAlarm.putExtra("idAlarma", id);
 
 			AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

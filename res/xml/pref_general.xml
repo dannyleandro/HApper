@@ -8,7 +8,15 @@
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Tiempo sincronizacion" />
+            android:title="Tiempo sincronizacion(min)" />
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="textCapWords"
+            android:key="prefIdUsuario"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Id Usuario" />
     </PreferenceCategory>
     
     <PreferenceCategory android:title="Botón Pánico" >
@@ -23,19 +31,19 @@
         <EditTextPreference
             android:capitalize="words"
             android:inputType="textCapWords"
-            android:key="prefApellidosUsuario"
+            android:key="prefNombresContacto"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Apellidos" />
+            android:title="Nombre contacto" />
         <EditTextPreference
             android:capitalize="words"
             android:inputType="textCapWords"
-            android:key="prefCelularUsuario"
+            android:key="prefCelularContacto"
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Celular" />
+            android:title="Celular contacto" />
     </PreferenceCategory>
     
     <PreferenceCategory android:title="Alarmas" >
@@ -46,7 +54,7 @@
             android:maxLines="1"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:title="Tiempo sonido alarma" />
+            android:title="Tiempo sonido alarma (Seg)" />
         <EditTextPreference
             android:capitalize="words"
             android:inputType="textCapWords"
@@ -66,13 +74,5 @@
             android:selectAllOnFocus="true"
             android:singleLine="true"
             android:title="Tiempo de cada pregunta" />
-        <EditTextPreference
-            android:capitalize="words"
-            android:inputType="textCapWords"
-            android:key="pref"
-            android:maxLines="1"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Cantidad preguntas" />
     </PreferenceCategory>
 </PreferenceScreen>

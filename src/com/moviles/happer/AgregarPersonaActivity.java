@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.moviles.mundo.AlarmReciever;
+import com.moviles.mundo.AlarmReceiver;
 import com.moviles.mundo.HApper;
 
 public class AgregarPersonaActivity extends Activity {
@@ -107,7 +107,7 @@ public class AgregarPersonaActivity extends Activity {
 			
 			int id = instancia.agregarPersona(nomb.getText().toString(), fechaNacimiento, gen,rel.getText().toString());
 			
-			Intent intentPerson = new Intent(getApplicationContext(), AlarmReciever.class);
+			Intent intentPerson = new Intent(getApplicationContext(), AlarmReceiver.class);
 			intentPerson.putExtra("idPersona", id);
 			
 			Toast.makeText(getApplicationContext(), "La persona se ha agregado correctamente", Toast.LENGTH_LONG).show();

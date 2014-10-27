@@ -12,6 +12,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.support.v4.app.NavUtils;
+import android.text.InputType;
 import android.view.MenuItem;
 
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener
@@ -26,6 +27,27 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 		super.onCreate(savedInstanceState);
 		setupActionBar();
 		addPreferencesFromResource(R.xml.pref_general);
+		
+		SharedPreferences sp = getPreferenceScreen().getSharedPreferences();
+        EditTextPreference editTextPref = (EditTextPreference) findPreference("prefSincronizacion");
+        editTextPref.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        editTextPref.setSummary(sp.getString("prefSincronizacion", "15"));
+        editTextPref = (EditTextPreference) findPreference("prefIdUsuario");
+        editTextPref.setSummary(sp.getString("prefIdUsuario", ""));
+        editTextPref = (EditTextPreference) findPreference("prefNombreUsuario");
+        editTextPref.setSummary(sp.getString("prefNombreUsuario", ""));
+        editTextPref = (EditTextPreference) findPreference("prefNombresContacto");
+        editTextPref.setSummary(sp.getString("prefNombresContacto", ""));
+        editTextPref = (EditTextPreference) findPreference("prefCelularContacto");
+        editTextPref.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        editTextPref.setSummary(sp.getString("prefCelularContacto", ""));
+        editTextPref = (EditTextPreference) findPreference("prefTiempoAlarma");
+        editTextPref.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+        editTextPref.setSummary(sp.getString("prefTiempoAlarma", "10"));
+        editTextPref = (EditTextPreference) findPreference("prefRingtone");
+        editTextPref.setSummary(sp.getString("prefRingtone", "Morning flower alarm"));
+        editTextPref = (EditTextPreference) findPreference("prefTiempoPregunta");
+        editTextPref.setSummary(sp.getString("prefTiempoPregunta", "Sin Tiempo"));        
 	}
 
 	@SuppressWarnings("deprecation")
