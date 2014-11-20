@@ -5,8 +5,13 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
@@ -18,16 +23,30 @@ import android.widget.Toast;
 
 import com.moviles.mundo.HApper;
 
-public class MainActivity extends ActionBarActivity {
-
+public class MainActivity extends ActionBarActivity implements SensorEventListener
+{	
+	private SensorManager mSensorManager; 
+	
+	private Sensor mAccelerometer; 
+	
 	private HApper instancia;
-
+	
+	public boolean pausa;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		instancia = HApper.darInstancia(getApplicationContext());
+		
+		pausa = false;
+		
+		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	@Override
@@ -37,7 +56,23 @@ public class MainActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	protected void onResume() 
+	{
+		super.onResume();
+		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+		pausa=false;
+	}
 
+	@Override
+	protected void onPause() 
+	{
+		super.onPause();
+		mSensorManager.unregisterListener(this);
+		pausa = true;
+	}
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) 
 	{
@@ -185,4 +220,75 @@ public class MainActivity extends ActionBarActivity {
         AlertDialog dialog = alertDialog.create();
 		dialog.show();
     }
+
+	@Override
+	public void onSensorChanged(SensorEvent event) 
+	{
+		if (event.sensor.getType()==Sensor.TYPE_ACCELEROMETER) 
+		{
+		    //double gvt=SensorManager.STANDARD_GRAVITY;
+		    double xx = event.values[0];
+			double yy = event.values[1];
+			double zz = event.values[2];
+		    double aaa=Math.round(Math.sqrt(Math.pow(xx, 2) +Math.pow(yy, 2) +Math.pow(zz, 2)));
+		    boolean max = false;
+		    System.out.println(aaa);
+		    max = (aaa >= 15);
+		    if (max) 
+		    {
+		    	AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		        alertDialog.setTitle("Se detectó una caída");
+		        alertDialog.setMessage("Se enviará un mensaje automatico a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?");
+		        alertDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() 
+		        {
+					public void onClick(DialogInterface dialog, int which) 
+					{ 
+						enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());
+						
+					}
+				});
+				alertDialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() 
+				{
+					public void onClick(DialogInterface dialog, int which) 
+					{ 
+						
+					}
+				});
+				alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+				alertDialog.show();
+				max=false;
+				mSensorManager.unregisterListener(this);
+				Thread thread = new Thread(new Runnable()
+				{
+					@Override
+					public void run() 
+					{
+						try 
+						{
+							Thread.sleep(10000);
+							iniciarListener();
+						} 
+						catch (InterruptedException e) 
+						{
+							e.printStackTrace();
+						}
+						
+					}
+				});
+				thread.start();
+		    }
+		}
+	}
+	
+	private void iniciarListener()
+	{
+		if(!pausa)
+			mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) 
+	{
+		
+	}
 }
