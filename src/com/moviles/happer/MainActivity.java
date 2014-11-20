@@ -15,6 +15,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -41,6 +42,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
 	private boolean caminata;
 	
+	private MediaRecorder mRecorder;
 	Activity act;
 
 	/**
@@ -63,6 +65,8 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+		mRecorder = new MediaRecorder();
+		
 	}
 
 	@Override
@@ -363,5 +367,80 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 	public void onAccuracyChanged(Sensor sensor, int accuracy) 
 	{
 
+	}
+	
+	/**
+	 * Metodo encargado de registrar audio de manera constante, al igual que de analisar el volumen del audio escuchado.
+	 * Se calcula el nivel de decibeles que se escucha, y en caso de que sea demasiado alto (una persona gritando a una distancia de 1 mt)
+	 * envia un msj de emergencia al cuidador 
+	 */
+	public void activarSonidoFuerte()
+	{
+		mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+		mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+		mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+		try 
+		{
+			mRecorder.prepare();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		} 
+		mRecorder.start();
+		
+		double amplitud = 0;
+		
+		if (mRecorder != null)
+		{    
+			amplitud =  (mRecorder.getMaxAmplitude());
+		}
+		else
+		{
+            amplitud = 0;
+		}
+		
+		double amplitudEMA = 0;
+		amplitudEMA = 0.6 * amplitud + (1.0 - 0.6)* amplitudEMA;
+		
+		double decibeles = 20 * Math.log10(amplitudEMA / amplitud);
+		
+		if(decibeles >= 78)
+		{
+			enviarAlarmaSonido();
+		}
+	}
+	
+	public void detenerSonidoFuerte()
+	{
+		if (mRecorder != null) 
+		{
+            mRecorder.stop();       
+            mRecorder.release();
+        }
+	}
+
+	public void enviarAlarmaSonido()
+	{
+		detenerSonidoFuerte();
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+		alertDialog.setTitle("Se detectó una sonido demasiado fuerte");
+		alertDialog.setMessage("Se enviará un mensaje automatico a: " +instancia.darNombreContactoBP()+  ". Esta de acuerdo con esto?");
+		alertDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog, int which) 
+			{ 
+				enviarMensajeSMS(instancia.darTelefonoContactoBP(), instancia.darMensajeAEnviarBP());
+			}
+		});
+		alertDialog.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog, int which) 
+			{ 
+
+			}
+		});
+		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
+		alertDialog.show();
 	}
 }
