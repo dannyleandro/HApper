@@ -20,8 +20,6 @@
         android:background="@drawable/panic_button"
         android:onClick="activarBotonPanico" />
 
-    <!-- No hay nada conectado aun, seria una aplicación vacia -->
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -63,7 +61,7 @@
         android:id="@+id/btnAyuda"
         android:layout_width="131dp"
         android:layout_height="wrap_content"
-        android:onClick="verAyuda"
-        android:text="@string/btn_ayuda" />
+        android:onClick="iniciarCaminata"
+        android:text="@string/btn_caminata" />
 
 </LinearLayout>

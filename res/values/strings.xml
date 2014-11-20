@@ -6,6 +6,7 @@
 
     <!-- Informacion relativa a los ajustes -->
     <string name="btn_ayuda">Ayuda</string>
+    <string name="btn_caminata">Iniciar Caminata</string>
 
     <!-- Informacion relativa a el juego -->
     <string name="btn_juego">Juego Mental</string>

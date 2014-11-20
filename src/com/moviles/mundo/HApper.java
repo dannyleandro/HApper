@@ -397,6 +397,7 @@ public class HApper
 					//duerme 10 seg
 					try 
 					{
+						System.out.println("Espera 10 seg para volver a enviar");
 						Thread.sleep(100000);
 					} 
 					catch (InterruptedException e) 

@@ -34,6 +34,8 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
         editTextPref.setSummary(sp.getString("prefSincronizacion", "15"));
         editTextPref = (EditTextPreference) findPreference("prefIdUsuario");
         editTextPref.setSummary(sp.getString("prefIdUsuario", ""));
+        editTextPref = (EditTextPreference) findPreference("prefDistance");
+        editTextPref.setSummary(sp.getInt("prefDistance", 40)+ "");
         editTextPref = (EditTextPreference) findPreference("prefNombreUsuario");
         editTextPref.setSummary(sp.getString("prefNombreUsuario", ""));
         editTextPref = (EditTextPreference) findPreference("prefNombresContacto");

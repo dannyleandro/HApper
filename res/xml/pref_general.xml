@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-        <PreferenceCategory android:title="General" >
+    <PreferenceCategory android:title="General" >
         <EditTextPreference
             android:capitalize="words"
             android:inputType="textCapWords"
@@ -18,7 +18,16 @@
             android:singleLine="true"
             android:title="Id Usuario" />
     </PreferenceCategory>
-    
+    <PreferenceCategory android:title="Caminata" >
+        <EditTextPreference
+            android:capitalize="words"
+            android:inputType="number"
+            android:key="prefDistance"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Distancia de caminata (Metros)" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="Botón Pánico" >
         <EditTextPreference
             android:capitalize="words"
@@ -45,7 +54,6 @@
             android:singleLine="true"
             android:title="Celular contacto" />
     </PreferenceCategory>
-    
     <PreferenceCategory android:title="Alarmas" >
         <EditTextPreference
             android:capitalize="words"
@@ -64,7 +72,6 @@
             android:singleLine="true"
             android:title="Sonido alarma" />
     </PreferenceCategory>
-
     <PreferenceCategory android:title="Juego" >
         <EditTextPreference
             android:capitalize="words"
@@ -75,4 +82,5 @@
             android:singleLine="true"
             android:title="Tiempo de cada pregunta" />
     </PreferenceCategory>
+
 </PreferenceScreen>
