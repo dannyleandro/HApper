@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 	private boolean pausa;
 
 	private boolean caminata;
-	
+
 	private MediaRecorder mRecorder;
 	Activity act;
 
@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		mRecorder = new MediaRecorder();
-		
+		activarSonidoFuerte();
 	}
 
 	@Override
@@ -83,6 +83,10 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 		super.onResume();
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		pausa=false;
+		if (mRecorder != null) 
+		{
+			mRecorder.start();
+		}
 	}
 
 	@Override
@@ -91,6 +95,10 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 		super.onPause();
 		mSensorManager.unregisterListener(this);
 		pausa = true;
+		if (mRecorder != null) 
+		{
+			mRecorder.stop();       
+		}
 	}
 
 	@Override
@@ -368,9 +376,9 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 	{
 
 	}
-	
+
 	/**
-	 * Metodo encargado de registrar audio de manera constante, al igual que de analisar el volumen del audio escuchado.
+	 * Metodo encargado de registrar audio de manera constante, al igual que de analizar el volumen del audio escuchado.
 	 * Se calcula el nivel de decibeles que se escucha, y en caso de que sea demasiado alto (una persona gritando a una distancia de 1 mt)
 	 * envia un msj de emergencia al cuidador 
 	 */
@@ -379,45 +387,72 @@ public class MainActivity extends ActionBarActivity implements SensorEventListen
 		mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
 		mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
 		mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+		mRecorder.setOutputFile("/dev/null");
 		try 
 		{
 			mRecorder.prepare();
+			mRecorder.start();
 		} 
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		} 
-		mRecorder.start();
-		
-		double amplitud = 0;
-		
-		if (mRecorder != null)
-		{    
-			amplitud =  (mRecorder.getMaxAmplitude());
-		}
-		else
+
+		Thread thread = new Thread(new Runnable()
 		{
-            amplitud = 0;
-		}
-		
-		double amplitudEMA = 0;
-		amplitudEMA = 0.6 * amplitud + (1.0 - 0.6)* amplitudEMA;
-		
-		double decibeles = 20 * Math.log10(amplitudEMA / amplitud);
-		
-		if(decibeles >= 78)
-		{
-			enviarAlarmaSonido();
-		}
+			double amplitud = 0;
+			boolean noGritaron = true;
+			@Override
+			public void run() 
+			{
+				while(noGritaron)
+				{
+					if (mRecorder != null)
+					{    
+						amplitud =  (mRecorder.getMaxAmplitude());
+					}
+
+					System.out.println("Amplitud del sonido:"+amplitud);
+					double amplitudEMA = 0;
+					amplitudEMA = 0.6 * amplitud + (1.0 - 0.6)* amplitudEMA;
+
+					double decibeles = 20 * Math.log10(amplitud/2700.0);
+
+					System.out.println("decibeles:"+decibeles);
+					if(decibeles >= 18)
+					{
+						System.out.println("Gritaron...");
+						noGritaron = false;
+						act.runOnUiThread(new Runnable() 
+						{
+							@Override
+							public void run() 
+							{
+								enviarAlarmaSonido();
+							}
+						});
+					}
+					try 
+					{
+						Thread.sleep(500);
+					} 
+					catch (InterruptedException e) 
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		thread.start();
 	}
-	
+
 	public void detenerSonidoFuerte()
 	{
 		if (mRecorder != null) 
 		{
-            mRecorder.stop();       
-            mRecorder.release();
-        }
+			mRecorder.stop();       
+			mRecorder.release();
+		}
 	}
 
 	public void enviarAlarmaSonido()

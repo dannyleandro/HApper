@@ -17,7 +17,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
-import android.media.MediaRecorder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -65,9 +64,6 @@ public class HApper
 	 * maneja el geocodificador
 	 */
 	private Geocoder geocoder;
-
-	
-	
 	
 	/**
 	 * Devuelve la instancia del mundo
